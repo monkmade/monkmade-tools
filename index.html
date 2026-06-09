@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>monkmade tools — winzige Browser-Tools, kein Upload, kein Account</title>
+<meta name="description" content="Kleine, kostenlose Werkzeuge, die komplett in deinem Browser laufen. Kein Upload, kein Account, kein Tracking. Gebaut in public.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<meta property="og:title" content="monkmade tools — winzige Browser-Tools, kein Upload">
+<meta property="og:description" content="Kleine kostenlose Werkzeuge, komplett im Browser. Kein Upload, kein Account, kein Tracking.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0e1116; --panel:#171b22; --panel2:#1f242d; --line:#2a313b;
+    --text:#e7ecf3; --muted:#9aa6b2; --accent:#5b8cff; --accent2:#3ad29f;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  .wrap{max-width:820px; margin:0 auto; padding:40px 18px 60px}
+  header h1{font-size:1.9rem; margin:.1em 0 .2em}
+  header h1 .dot{color:var(--accent)}
+  header p.lead{color:var(--muted); font-size:1.05rem; margin:.3em 0 0; max-width:60ch}
+  .pills{margin-top:16px; display:flex; gap:8px; flex-wrap:wrap}
+  .pill{font-size:.78rem; color:var(--accent2); border:1px solid var(--accent2);
+    border-radius:999px; padding:3px 11px}
+
+  h2.section{font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+    margin:40px 0 14px}
+  .tools{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  @media(max-width:600px){ .tools{grid-template-columns:1fr} }
+  a.tool{display:block; text-decoration:none; color:inherit;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px; transition:border-color .15s, transform .12s}
+  a.tool:hover{border-color:var(--accent); transform:translateY(-2px)}
+  a.tool .emoji{font-size:1.8rem}
+  a.tool h3{margin:8px 0 4px; font-size:1.1rem}
+  a.tool p{margin:0; color:var(--muted); font-size:.92rem}
+  a.tool .go{margin-top:10px; color:var(--accent); font-size:.9rem; font-weight:600}
+  .soon{opacity:.55; border-style:dashed; cursor:default}
+  .soon:hover{transform:none; border-color:var(--line)}
+
+  .ask{margin-top:40px; background:var(--panel); border:1px solid var(--line);
+    border-radius:var(--radius); padding:20px}
+  .ask strong{font-size:1.05rem}
+  .ask p{color:var(--muted); margin:.4em 0 .8em}
+  .ask a.cta{display:inline-block; background:var(--accent); color:#0b1020; text-decoration:none;
+    font-weight:600; padding:10px 16px; border-radius:10px}
+
+  footer{margin-top:46px; border-top:1px solid var(--line); padding-top:20px;
+    color:var(--muted); font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>monkmade<span class="dot"> tools</span></h1>
+    <p class="lead">Winzige Werkzeuge, die <strong>komplett in deinem Browser</strong> laufen.
+       Kein Upload, kein Account, kein Tracking. Kostenlos.</p>
+    <div class="pills">
+      <span class="pill">100 % im Browser</span>
+      <span class="pill">kein Upload</span>
+      <span class="pill">kein Account</span>
+      <span class="pill">build in public</span>
+    </div>
+  </header>
+
+  <h2 class="section">Tools</h2>
+  <div class="tools">
+    <a class="tool" href="image-resizer/">
+      <div class="emoji">🖼️</div>
+      <h3>Bild-Resizer &amp; Konverter</h3>
+      <p>Bilder &amp; Screenshots verkleinern, komprimieren und in PNG / JPG / WebP wandeln.</p>
+      <div class="go">Öffnen →</div>
+    </a>
+    <div class="tool soon">
+      <div class="emoji">⏳</div>
+      <h3>Nächstes Tool …</h3>
+      <p>Was soll es sein? Sag mir den nächsten nervigen Handgriff (unten).</p>
+    </div>
+  </div>
+
+  <div class="ask">
+    <strong>Was ist der nächste nervige Handgriff in deinem Workflow?</strong>
+    <p>Beschreib ihn in einem Satz — wenn es als winziges Browser-Tool lösbar ist, baue ich es vielleicht als Nächstes.</p>
+    <a class="cta" id="ask-link" href="#" target="_blank" rel="noopener">→ Sag's mir (GitHub, 1 Klick)</a>
+  </div>
+
+  <footer>
+    Build in Public von <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> ·
+    <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Quellcode auf GitHub</a> ·
+    alles statisch, kein Server.
+  </footer>
+</div>
+<script>
+  document.getElementById("ask-link").href =
+    "https://github.com/monkmade/monkmade-tools/issues/new?title="
+    + encodeURIComponent("Nächster Handgriff: ")
+    + "&body=" + encodeURIComponent("Welcher nervige Handgriff in deinem Workflow soll ein winziges Browser-Tool lösen?\n\n");
+</script>
+</body>
+</html>
