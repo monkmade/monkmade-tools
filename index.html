@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>monkmade tools — winzige Browser-Tools, kein Upload, kein Account</title>
-<meta name="description" content="Kleine, kostenlose Werkzeuge, die komplett in deinem Browser laufen. Kein Upload, kein Account, kein Tracking. Gebaut in public.">
+<title>monkmade tools — tiny browser tools, no upload, no account</title>
+<meta name="description" content="Small, free tools that run entirely in your browser. No upload, no account, no tracking. Built in public.">
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
-<meta property="og:title" content="monkmade tools — winzige Browser-Tools, kein Upload">
-<meta property="og:description" content="Kleine kostenlose Werkzeuge, komplett im Browser. Kein Upload, kein Account, kein Tracking.">
+<meta property="og:title" content="monkmade tools — tiny browser tools, no upload">
+<meta property="og:description" content="Small free tools, entirely in your browser. No upload, no account, no tracking.">
 <meta property="og:type" content="website">
 <style>
   :root{
@@ -22,6 +22,9 @@
     background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
   a{color:var(--accent)}
   .wrap{max-width:820px; margin:0 auto; padding:40px 18px 60px}
+  #lang{float:right; font-size:.78rem; color:var(--muted); text-decoration:none;
+    border:1px solid var(--line); border-radius:999px; padding:2px 10px}
+  #lang:hover{color:var(--text); border-color:var(--accent)}
   header h1{font-size:1.9rem; margin:.1em 0 .2em}
   header h1 .dot{color:var(--accent)}
   header p.lead{color:var(--muted); font-size:1.05rem; margin:.3em 0 0; max-width:60ch}
@@ -43,6 +46,10 @@
   a.tool .go{margin-top:10px; color:var(--accent); font-size:.9rem; font-weight:600}
   .soon{opacity:.55; border-style:dashed; cursor:default}
   .soon:hover{transform:none; border-color:var(--line)}
+  div.tool{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px}
+  div.tool h3{margin:8px 0 4px; font-size:1.1rem}
+  div.tool p{margin:0; color:var(--muted); font-size:.92rem}
+  div.tool .emoji{font-size:1.8rem}
 
   .ask{margin-top:40px; background:var(--panel); border:1px solid var(--line);
     border-radius:var(--radius); padding:20px}
@@ -57,14 +64,15 @@
 </head>
 <body>
 <div class="wrap">
+  <a id="lang" href="#">Deutsch</a>
   <header>
     <h1>monkmade<span class="dot"> tools</span></h1>
-    <p class="lead">Winzige Werkzeuge, die <strong>komplett in deinem Browser</strong> laufen.
-       Kein Upload, kein Account, kein Tracking. Kostenlos.</p>
+    <p class="lead" data-i18n="lead">Tiny tools that run <strong>entirely in your browser</strong>.
+       No upload, no account, no tracking. Free.</p>
     <div class="pills">
-      <span class="pill">100 % im Browser</span>
-      <span class="pill">kein Upload</span>
-      <span class="pill">kein Account</span>
+      <span class="pill" data-i18n="pill1">100% in your browser</span>
+      <span class="pill" data-i18n="pill2">no upload</span>
+      <span class="pill" data-i18n="pill3">no account</span>
       <span class="pill">build in public</span>
     </div>
   </header>
@@ -73,34 +81,111 @@
   <div class="tools">
     <a class="tool" href="image-resizer/">
       <div class="emoji">🖼️</div>
-      <h3>Bild-Resizer &amp; Konverter</h3>
-      <p>Bilder &amp; Screenshots verkleinern, komprimieren und in PNG / JPG / WebP wandeln.</p>
-      <div class="go">Öffnen →</div>
+      <h3 data-i18n="t1h3">Image Resizer &amp; Converter</h3>
+      <p data-i18n="t1p">Resize, compress and convert images &amp; screenshots to PNG / JPG / WebP.</p>
+      <div class="go" data-i18n="t1go">Open →</div>
     </a>
     <div class="tool soon">
       <div class="emoji">⏳</div>
-      <h3>Nächstes Tool …</h3>
-      <p>Was soll es sein? Sag mir den nächsten nervigen Handgriff (unten).</p>
+      <h3 data-i18n="soonH3">Next tool …</h3>
+      <p data-i18n="soonP">What should it be? Tell me the next annoying manual task (below).</p>
     </div>
   </div>
 
   <div class="ask">
-    <strong>Was ist der nächste nervige Handgriff in deinem Workflow?</strong>
-    <p>Beschreib ihn in einem Satz — wenn es als winziges Browser-Tool lösbar ist, baue ich es vielleicht als Nächstes.</p>
-    <a class="cta" id="ask-link" href="#" target="_blank" rel="noopener">→ Sag's mir (GitHub, 1 Klick)</a>
+    <strong data-i18n="askTitle">What's the next annoying manual task in your workflow?</strong>
+    <p data-i18n="askBody">Describe it in one sentence — if a tiny browser tool can solve it, I might build it next.</p>
+    <a class="cta" id="ask-link" href="#" target="_blank" rel="noopener" data-i18n="askCta">→ Tell me (GitHub, 1 click)</a>
   </div>
 
-  <footer>
-    Build in Public von <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> ·
-    <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Quellcode auf GitHub</a> ·
-    alles statisch, kein Server.
+  <footer data-i18n="footer">
+    Build in public by <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> ·
+    <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">source code on GitHub</a> ·
+    all static, no server.
   </footer>
 </div>
 <script>
-  document.getElementById("ask-link").href =
-    "https://github.com/monkmade/monkmade-tools/issues/new?title="
-    + encodeURIComponent("Nächster Handgriff: ")
-    + "&body=" + encodeURIComponent("Welcher nervige Handgriff in deinem Workflow soll ein winziges Browser-Tool lösen?\n\n");
+(function(){
+  "use strict";
+
+  // i18n: English is the default; German via ?lang=de, saved choice, or browser language.
+  var I18N = {
+    en: {
+      title: "monkmade tools — tiny browser tools, no upload, no account",
+      lead: 'Tiny tools that run <strong>entirely in your browser</strong>. No upload, no account, no tracking. Free.',
+      pill1: "100% in your browser", pill2: "no upload", pill3: "no account",
+      t1h3: "Image Resizer &amp; Converter",
+      t1p: "Resize, compress and convert images &amp; screenshots to PNG / JPG / WebP.",
+      t1go: "Open →",
+      soonH3: "Next tool …",
+      soonP: "What should it be? Tell me the next annoying manual task (below).",
+      askTitle: "What's the next annoying manual task in your workflow?",
+      askBody: "Describe it in one sentence — if a tiny browser tool can solve it, I might build it next.",
+      askCta: "→ Tell me (GitHub, 1 click)",
+      footer: 'Build in public by <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">source code on GitHub</a> · all static, no server.',
+      toggle: "Deutsch",
+      issueTitle: "Next annoying task: ",
+      issueBody: "What's the next annoying manual task in your workflow that a tiny browser tool could solve?\n\n"
+    },
+    de: {
+      title: "monkmade tools — winzige Browser-Tools, kein Upload, kein Account",
+      lead: 'Winzige Werkzeuge, die <strong>komplett in deinem Browser</strong> laufen. Kein Upload, kein Account, kein Tracking. Kostenlos.',
+      pill1: "100 % im Browser", pill2: "kein Upload", pill3: "kein Account",
+      t1h3: "Bild-Resizer &amp; Konverter",
+      t1p: "Bilder &amp; Screenshots verkleinern, komprimieren und in PNG / JPG / WebP wandeln.",
+      t1go: "Öffnen →",
+      soonH3: "Nächstes Tool …",
+      soonP: "Was soll es sein? Sag mir den nächsten nervigen Handgriff (unten).",
+      askTitle: "Was ist der nächste nervige Handgriff in deinem Workflow?",
+      askBody: "Beschreib ihn in einem Satz — wenn es als winziges Browser-Tool lösbar ist, baue ich es vielleicht als Nächstes.",
+      askCta: "→ Sag's mir (GitHub, 1 Klick)",
+      footer: 'Build in Public von <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Quellcode auf GitHub</a> · alles statisch, kein Server.',
+      toggle: "English",
+      issueTitle: "Nächster Handgriff: ",
+      issueBody: "Welcher nervige Handgriff in deinem Workflow soll ein winziges Browser-Tool lösen?\n\n"
+    }
+  };
+
+  function detectLang(){
+    try{
+      var q = new URLSearchParams(location.search).get("lang");
+      if(q === "de" || q === "en") return q;
+    }catch(e){}
+    try{
+      var s = localStorage.getItem("mmt-lang");
+      if(s === "de" || s === "en") return s;
+    }catch(e){}
+    return ((navigator.language || "").toLowerCase().indexOf("de") === 0) ? "de" : "en";
+  }
+
+  var lang = detectLang();
+  var langBtn = document.getElementById("lang");
+
+  function applyLang(l){
+    lang = l;
+    var T = I18N[l];
+    document.documentElement.lang = l;
+    document.title = T.title;
+    var els = document.querySelectorAll("[data-i18n]");
+    for(var i=0;i<els.length;i++){
+      var key = els[i].getAttribute("data-i18n");
+      if(T[key] != null) els[i].innerHTML = T[key];
+    }
+    langBtn.textContent = T.toggle;
+    document.getElementById("ask-link").href =
+      "https://github.com/monkmade/monkmade-tools/issues/new?title="
+      + encodeURIComponent(T.issueTitle) + "&body=" + encodeURIComponent(T.issueBody);
+  }
+
+  langBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    var next = (lang === "de") ? "en" : "de";
+    try{ localStorage.setItem("mmt-lang", next); }catch(err){}
+    applyLang(next);
+  });
+
+  applyLang(lang);
+})();
 </script>
 </body>
 </html>

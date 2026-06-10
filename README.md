@@ -1,6 +1,6 @@
 # 🛠️ monkmade tools
 
-Winzige Werkzeuge, die **komplett im Browser** laufen — kein Upload, kein Account, kein Tracking, kein Server. Build in Public.
+Tiny tools that run **entirely in your browser** — no upload, no account, no tracking, no server. Build in public.
 
 **Live:** https://monkmade.github.io/monkmade-tools/
 
@@ -8,36 +8,38 @@ Winzige Werkzeuge, die **komplett im Browser** laufen — kein Upload, kein Acco
 
 ## Tools
 
-| Tool | Was es macht | Live |
+| Tool | What it does | Live |
 |---|---|---|
-| 🖼️ **Bild-Resizer & Konverter** | Bilder/Screenshots verkleinern, komprimieren, in PNG/JPG/WebP wandeln — 100 % client-side | [öffnen](https://monkmade.github.io/monkmade-tools/image-resizer/) |
+| 🖼️ **Image Resizer & Converter** | Resize, compress and convert images/screenshots to PNG/JPG/WebP — 100% client-side | [open](https://monkmade.github.io/monkmade-tools/image-resizer/) |
 
-*Nächstes Tool: noch offen — siehe [„nächster Handgriff?"](#nächster-nerviger-handgriff) unten.*
+*Next tool: not decided yet — see ["next annoying task?"](#whats-the-next-annoying-manual-task) below.*
 
----
-
-## Warum
-
-Jedes Tool hier folgt denselben Regeln:
-
-- **100 % client-side** — deine Dateien verlassen nie deinen Browser.
-- **Kein Backend, kein Account, keine Datenbank, kein Tracking.**
-- **Statisch gehostet** (GitHub Pages), kostenlos, null Wartung.
-- **Single-purpose** — ein Tool, ein klarer Job.
-
-## Nächster nerviger Handgriff?
-
-Was nervt dich gerade in deinem Workflow und ließe sich als winziges Browser-Tool lösen?
-→ **[Sag's mir per GitHub-Issue](https://github.com/monkmade/monkmade-tools/issues/new?title=N%C3%A4chster%20Handgriff:%20)** (1 Klick, kein Account-Zwang außer GitHub).
-
-Eingehende Wünsche sammle ich in [`INBOUND-ASKS-LOG.md`](INBOUND-ASKS-LOG.md).
+🌐 Pages are **English by default**; German browsers get German automatically (tiny built-in EN/DE toggle, `?lang=de` works too).
 
 ---
 
-## Technik
+## Why
 
-Reines HTML/CSS/JS, keine Build-Pipeline, keine Dependencies. Jedes Tool ist eine eigenständige `index.html` in einem Unterordner. Lokal: einfach `index.html` im Browser öffnen.
+Every tool here follows the same rules:
 
-## Lizenz
+- **100% client-side** — your files never leave your browser.
+- **No backend, no account, no database, no tracking.**
+- **Statically hosted** (GitHub Pages), free, zero maintenance.
+- **Single-purpose** — one tool, one clear job.
 
-[MIT](LICENSE) — frei nutzbar.
+## What's the next annoying manual task?
+
+What's bugging you in your workflow right now that a tiny browser tool could solve?
+→ **[Tell me via GitHub issue](https://github.com/monkmade/monkmade-tools/issues/new?title=Next%20annoying%20task%3A%20)** (1 click, no account needed beyond GitHub).
+
+Incoming requests are collected in [`INBOUND-ASKS-LOG.md`](INBOUND-ASKS-LOG.md).
+
+---
+
+## Tech
+
+Plain HTML/CSS/JS, no build pipeline, no dependencies. Each tool is a self-contained `index.html` in its own folder. Locally: just open `index.html` in a browser.
+
+## License
+
+[MIT](LICENSE) — free to use.
