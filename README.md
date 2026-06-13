@@ -11,6 +11,7 @@ Tiny tools that run **entirely in your browser** — no upload, no account, no t
 | Tool | What it does | Live |
 |---|---|---|
 | 🖼️ **Image Resizer & Converter** | Resize, compress and convert images/screenshots to PNG/JPG/WebP — 100% client-side | [open](https://monkmade.github.io/monkmade-tools/image-resizer/) |
+| 🔍 **Photo Privacy Check** | See hidden GPS location, camera & timestamps (EXIF) in your photos — and strip all metadata before sharing — 100% client-side | [open](https://monkmade.github.io/monkmade-tools/photo-privacy/) |
 
 *Next tool: not decided yet — see ["next annoying task?"](#whats-the-next-annoying-manual-task) below.*
 

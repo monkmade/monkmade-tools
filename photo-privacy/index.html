@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Privacy Check — see &amp; strip hidden metadata | monkmade tools</title>
+<meta name="description" content="Check your photos for hidden GPS location, camera info and timestamps. Strip all metadata before sharing. 100% in your browser — nothing gets uploaded.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+<meta property="og:title" content="Photo Privacy Check — see &amp; strip hidden metadata">
+<meta property="og:description" content="Check photos for hidden GPS, camera info, timestamps. Strip everything before sharing. 100% in your browser.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0e1116; --panel:#171b22; --panel2:#1f242d; --line:#2a313b;
+    --text:#e7ecf3; --muted:#9aa6b2; --accent:#5b8cff; --accent2:#3ad29f; --warn:#ffb84d; --danger:#ff5c5c;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent)}
+  .wrap{max-width:880px; margin:0 auto; padding:24px 18px 60px}
+  header h1{font-size:1.5rem; margin:.2em 0 .15em}
+  header p.sub{color:var(--muted); margin:.2em 0 0}
+  .crumb{font-size:.85rem; color:var(--muted); margin-bottom:6px}
+  .crumb a{text-decoration:none}
+  #lang{float:right; font-size:.78rem; color:var(--muted); text-decoration:none;
+    border:1px solid var(--line); border-radius:999px; padding:2px 10px}
+  #lang:hover{color:var(--text); border-color:var(--accent)}
+  .badge{display:inline-block; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--accent2); border:1px solid var(--accent2); border-radius:999px; padding:2px 9px; margin-left:6px; vertical-align:middle}
+
+  /* Drop zone */
+  #drop{
+    margin-top:22px; border:2px dashed var(--line); border-radius:var(--radius);
+    background:var(--panel); padding:38px 20px; text-align:center; cursor:pointer;
+    transition:border-color .15s, background .15s;
+  }
+  #drop:hover,#drop.drag{border-color:var(--accent); background:var(--panel2)}
+  #drop .big{font-size:2.4rem; line-height:1}
+  #drop .hint{color:var(--muted); font-size:.9rem; margin-top:8px}
+  #drop strong{color:var(--text)}
+  input[type=file]{display:none}
+
+  /* Results */
+  #results{display:none; margin-top:22px}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media(max-width:680px){ .grid{grid-template-columns:1fr} }
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px}
+  .card h2{font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 12px}
+
+  .preview-box{background:
+      linear-gradient(45deg,#222 25%,transparent 25%),
+      linear-gradient(-45deg,#222 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#222 75%),
+      linear-gradient(-45deg,transparent 75%,#222 75%);
+    background-size:18px 18px; background-position:0 0,0 9px,9px -9px,-9px 0;
+    background-color:#1a1a1a;
+    border-radius:10px; min-height:140px; display:flex; align-items:center; justify-content:center; overflow:hidden}
+  .preview-box img{max-width:100%; max-height:260px; display:block}
+  .meta-line{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; font-size:.85rem; color:var(--muted)}
+  .meta-line b{color:var(--text); font-weight:600}
+
+  /* Metadata findings */
+  .finding{display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--line)}
+  .finding:last-child{border:0}
+  .finding .icon{font-size:1.1rem; flex-shrink:0; margin-top:1px}
+  .finding .label{font-size:.82rem; color:var(--muted)}
+  .finding .value{font-size:.95rem; font-weight:500; word-break:break-all}
+
+  /* GPS warning */
+  .gps-warn{margin-top:14px; background:#2a1515; border:1px solid var(--danger); border-radius:10px;
+    padding:14px 16px; display:flex; align-items:flex-start; gap:10px}
+  .gps-warn .icon{font-size:1.3rem; flex-shrink:0}
+  .gps-warn .text{font-size:.95rem}
+  .gps-warn .text b{color:var(--danger)}
+  .gps-warn .coords{font-family:monospace; font-size:.9rem; color:var(--text); margin-top:4px;
+    background:var(--panel2); padding:6px 10px; border-radius:6px; display:inline-block}
+
+  /* Clean message */
+  .clean-msg{padding:18px; text-align:center; color:var(--accent2); font-size:1rem}
+  .clean-msg .big{font-size:2rem}
+  .not-jpeg-msg{padding:14px; color:var(--muted); font-size:.92rem; line-height:1.5}
+
+  /* Save section */
+  .save-section{margin-top:18px}
+  .seg{display:flex; border:1px solid var(--line); border-radius:8px; overflow:hidden}
+  .seg button{flex:1; background:var(--panel2); color:var(--text); border:0; padding:9px 0; cursor:pointer; font:inherit}
+  .seg button.active{background:var(--accent); color:#0b1020; font-weight:600}
+  .qrow{display:flex; align-items:center; gap:10px; margin-top:10px}
+  .qrow output{min-width:42px; text-align:right; font-variant-numeric:tabular-nums; color:var(--text)}
+  .qrow.disabled{opacity:.4; pointer-events:none}
+  input[type=range]{width:100%; accent-color:var(--accent)}
+  label.lbl{display:block; font-size:.85rem; color:var(--muted); margin-bottom:5px}
+  .row{margin-bottom:14px}
+
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+  .btn{appearance:none; border:0; border-radius:10px; padding:12px 18px; font:inherit; font-weight:600; cursor:pointer}
+  .btn.primary{background:var(--accent); color:#0b1020}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{background:transparent; color:var(--muted); border:1px solid var(--line)}
+  .btn.ghost:hover{color:var(--text); border-color:var(--text)}
+
+  .privacy{margin-top:26px; font-size:.85rem; color:var(--muted); display:flex; align-items:center; gap:8px;
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:11px 14px}
+  .privacy b{color:var(--accent2)}
+
+  footer{margin-top:40px; border-top:1px solid var(--line); padding-top:22px; color:var(--muted); font-size:.92rem}
+  footer .ask{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px}
+  footer .ask strong{color:var(--text)}
+  footer .ask a{font-weight:600}
+  footer .small{margin-top:14px; font-size:.82rem}
+  canvas{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumb">
+    <a id="lang" href="#">Deutsch</a>
+    <a href="../">monkmade tools</a> / <span data-i18n="crumb">Photo Privacy Check</span>
+  </div>
+  <header>
+    <h1 data-i18n="h1">🔍 Photo Privacy Check <span class="badge">no upload</span></h1>
+    <p class="sub" data-i18n="sub">See what your photo reveals — GPS location, camera, timestamps — and strip it all before sharing.</p>
+  </header>
+
+  <!-- Drop / Pick -->
+  <div id="drop" tabindex="0" role="button" aria-label="Choose a photo or drag it here">
+    <div class="big">📷</div>
+    <div data-i18n="dropMain"><strong>Drop a photo here</strong> · click to choose · or press <strong>Ctrl+V</strong></div>
+    <div class="hint" data-i18n="dropHint">JPG, PNG, WebP … — nothing gets uploaded.</div>
+    <input type="file" id="file" accept="image/*">
+  </div>
+
+  <!-- Results -->
+  <section id="results">
+    <div class="grid">
+      <!-- Preview -->
+      <div class="card">
+        <h2 data-i18n="previewH2">Your photo</h2>
+        <div class="preview-box"><img id="preview" alt="Preview"></div>
+        <div class="meta-line">
+          <span><b id="m-name">-</b></span>
+          <span><b id="m-size">-</b></span>
+          <span><b id="m-dims">-</b></span>
+        </div>
+      </div>
+
+      <!-- Metadata findings -->
+      <div class="card">
+        <h2 data-i18n="metaH2">Hidden metadata</h2>
+        <div id="findings"></div>
+      </div>
+    </div>
+
+    <!-- GPS warning (shown only if GPS found) -->
+    <div id="gps-warn" class="gps-warn" style="display:none">
+      <div class="icon">🚨</div>
+      <div class="text">
+        <b data-i18n="gpsWarnTitle">This photo reveals your location!</b>
+        <span data-i18n="gpsWarnBody"> Anyone who gets this file can see exactly where it was taken.</span>
+        <div class="coords" id="gps-coords"></div>
+      </div>
+    </div>
+
+    <!-- Clean save -->
+    <div class="card save-section">
+      <h2 data-i18n="saveH2">Save clean copy</h2>
+      <p style="color:var(--muted); font-size:.9rem; margin:0 0 14px" data-i18n="saveDesc">
+        Re-encodes the image through Canvas — all metadata (GPS, camera, timestamps) is removed.
+      </p>
+
+      <div class="row">
+        <label class="lbl" data-i18n="lblFormat">Format</label>
+        <div class="seg" id="fmt">
+          <button data-fmt="image/png">PNG</button>
+          <button data-fmt="image/jpeg" class="active">JPG</button>
+          <button data-fmt="image/webp">WebP</button>
+        </div>
+      </div>
+
+      <div class="row" id="qrow">
+        <label class="lbl"><span data-i18n="lblQuality">Quality</span> <span id="qhint" style="color:var(--muted)"></span></label>
+        <div class="qrow">
+          <input type="range" id="q" min="0.3" max="1" step="0.01" value="0.92">
+          <output id="qval">92%</output>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="download" data-i18n="btnDownload">⬇️ Download clean copy</button>
+        <button class="btn ghost" id="reset" data-i18n="btnReset">Different photo</button>
+      </div>
+    </div>
+
+    <div class="privacy" data-i18n="privacy">
+      🔒 <span><b>Your photos never leave your browser.</b> No upload, no server — the check and cleaning happen entirely on your device.</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ask">
+      <strong data-i18n="askTitle">What's the next annoying manual task in your workflow?</strong><br>
+      <span data-i18n="askBody">Tell me in one sentence — I might build the next tiny tool for it.</span>
+      <a id="ask-link" href="#" target="_blank" rel="noopener" data-i18n="askLink">→ Tell me here (GitHub, 1 click)</a>
+    </div>
+    <div class="small" data-i18n="footerSmall">
+      Build in public · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Source code &amp; more tools on GitHub</a> ·
+      free &amp; no sign-up.
+    </div>
+  </footer>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- i18n ----
+  var I18N = {
+    en: {
+      title: "Photo Privacy Check — see & strip hidden metadata | monkmade tools",
+      crumb: "Photo Privacy Check",
+      h1: '🔍 Photo Privacy Check <span class="badge">no upload</span>',
+      sub: "See what your photo reveals — GPS location, camera, timestamps — and strip it all before sharing.",
+      dropMain: "<strong>Drop a photo here</strong> · click to choose · or press <strong>Ctrl+V</strong>",
+      dropHint: "JPG, PNG, WebP … — nothing gets uploaded.",
+      dropAria: "Choose a photo or drag it here",
+      previewH2: "Your photo",
+      metaH2: "Hidden metadata",
+      gpsWarnTitle: "This photo reveals your location!",
+      gpsWarnBody: " Anyone who gets this file can see exactly where it was taken.",
+      saveH2: "Save clean copy",
+      saveDesc: "Re-encodes the image through Canvas — all metadata (GPS, camera, timestamps) is removed.",
+      lblFormat: "Format",
+      lblQuality: "Quality",
+      btnDownload: "⬇️ Download clean copy",
+      btnReset: "Different photo",
+      privacy: '🔒 <span><b>Your photos never leave your browser.</b> No upload, no server — the check and cleaning happen entirely on your device.</span>',
+      askTitle: "What's the next annoying manual task in your workflow?",
+      askBody: "Tell me in one sentence — I might build the next tiny tool for it.",
+      askLink: "→ Tell me here (GitHub, 1 click)",
+      footerSmall: 'Build in public · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Source code &amp; more tools on GitHub</a> · free &amp; no sign-up.',
+      toggle: "Deutsch",
+      lossless: "(lossless — no slider needed)",
+      alertRead: "Couldn't read that image.",
+      issueTitle: "Next annoying task: ",
+      issueBody: "What's the next annoying manual task in your workflow that a tiny browser tool could solve?\n\n",
+      lblGps: "GPS location",
+      lblDate: "Date / time",
+      lblCamera: "Camera",
+      lblSoftware: "Software",
+      cleanTitle: "No sensitive metadata found",
+      cleanBody: "This photo doesn't contain GPS coordinates, camera info or timestamps in its EXIF data.",
+      notJpeg: "This is a PNG/WebP file — these formats rarely carry sensitive metadata. Saving a clean copy removes anything that might be there.",
+      baseName: "photo"
+    },
+    de: {
+      title: "Foto-Privatsphäre-Check — versteckte Metadaten sehen & entfernen | monkmade tools",
+      crumb: "Foto-Privatsphäre-Check",
+      h1: '🔍 Foto-Privatsphäre-Check <span class="badge">kein Upload</span>',
+      sub: "Sieh, was dein Foto verrät — GPS-Standort, Kamera, Zeitstempel — und entferne alles vor dem Teilen.",
+      dropMain: "<strong>Foto hierher ziehen</strong> · klicken zum Auswählen · oder <strong>Strg+V</strong> einfügen",
+      dropHint: "JPG, PNG, WebP … — nichts wird hochgeladen.",
+      dropAria: "Foto auswählen oder hierher ziehen",
+      previewH2: "Dein Foto",
+      metaH2: "Versteckte Metadaten",
+      gpsWarnTitle: "Dieses Foto verrät deinen Standort!",
+      gpsWarnBody: " Jeder, der diese Datei bekommt, kann genau sehen, wo sie aufgenommen wurde.",
+      saveH2: "Saubere Kopie speichern",
+      saveDesc: "Das Bild wird durch Canvas neu kodiert — alle Metadaten (GPS, Kamera, Zeitstempel) werden entfernt.",
+      lblFormat: "Format",
+      lblQuality: "Qualität",
+      btnDownload: "⬇️ Saubere Kopie herunterladen",
+      btnReset: "Anderes Foto",
+      privacy: '🔒 <span><b>Deine Fotos verlassen nie deinen Browser.</b> Kein Upload, kein Server — Prüfung und Bereinigung passieren komplett auf deinem Gerät.</span>',
+      askTitle: "Was ist der nächste nervige Handgriff in deinem Workflow?",
+      askBody: "Sag's mir in einem Satz — ich bau vielleicht das nächste winzige Tool dafür.",
+      askLink: "→ Schreib's hier rein (GitHub, 1 Klick)",
+      footerSmall: 'Build in Public · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Quellcode &amp; weitere Tools auf GitHub</a> · kostenlos &amp; ohne Anmeldung.',
+      toggle: "English",
+      lossless: "(verlustfrei — kein Regler nötig)",
+      alertRead: "Bild konnte nicht gelesen werden.",
+      issueTitle: "Nächster Handgriff: ",
+      issueBody: "Welcher nervige Handgriff in deinem Workflow soll ein winziges Browser-Tool lösen?\n\n",
+      lblGps: "GPS-Standort",
+      lblDate: "Datum / Uhrzeit",
+      lblCamera: "Kamera",
+      lblSoftware: "Software",
+      cleanTitle: "Keine sensiblen Metadaten gefunden",
+      cleanBody: "Dieses Foto enthält keine GPS-Koordinaten, Kamera-Infos oder Zeitstempel in den EXIF-Daten.",
+      notJpeg: "Das ist eine PNG/WebP-Datei — diese Formate enthalten selten sensible Metadaten. Eine saubere Kopie entfernt alles, was da sein könnte.",
+      baseName: "foto"
+    }
+  };
+
+  function detectLang(){
+    try{
+      var q = new URLSearchParams(location.search).get("lang");
+      if(q === "de" || q === "en") return q;
+    }catch(e){}
+    try{
+      var s = localStorage.getItem("mmt-lang");
+      if(s === "de" || s === "en") return s;
+    }catch(e){}
+    return ((navigator.language || "").toLowerCase().indexOf("de") === 0) ? "de" : "en";
+  }
+
+  var lang = detectLang();
+  var T = I18N[lang];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var drop=$("drop"), fileInput=$("file"), results=$("results"),
+      preview=$("preview"), canvas=$("canvas"), ctx=canvas.getContext("2d"),
+      findings=$("findings"), gpsWarn=$("gps-warn"), gpsCoords=$("gps-coords"),
+      fmtBox=$("fmt"), qRow=$("qrow"), q=$("q"), qval=$("qval"), qhint=$("qhint"),
+      downloadBtn=$("download"), resetBtn=$("reset"), langBtn=$("lang");
+
+  var state = { bitmap:null, origW:0, origH:0, baseName:"photo", fmt:"image/jpeg", blobUrl:null, blob:null };
+
+  function applyLang(l){
+    lang = l; T = I18N[l];
+    document.documentElement.lang = l;
+    document.title = T.title;
+    var els = document.querySelectorAll("[data-i18n]");
+    for(var i=0;i<els.length;i++){
+      var key = els[i].getAttribute("data-i18n");
+      if(T[key] != null) els[i].innerHTML = T[key];
+    }
+    drop.setAttribute("aria-label", T.dropAria);
+    langBtn.textContent = T.toggle;
+    $("ask-link").href = "https://github.com/monkmade/monkmade-tools/issues/new?title="
+      + encodeURIComponent(T.issueTitle) + "&body=" + encodeURIComponent(T.issueBody);
+    qhint.textContent = isLossy() ? "" : T.lossless;
+  }
+
+  langBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    var next = (lang === "de") ? "en" : "de";
+    try{ localStorage.setItem("mmt-lang", next); }catch(err){}
+    applyLang(next);
+  });
+
+  // ---- Helpers ----
+  function fmtBytes(b){
+    if(b < 1024) return b + " B";
+    if(b < 1024*1024) return (b/1024).toFixed(b<10240?1:0) + " KB";
+    return (b/1024/1024).toFixed(2) + " MB";
+  }
+  function extFor(mime){ return mime==="image/jpeg" ? "jpg" : mime==="image/webp" ? "webp" : "png"; }
+  function isLossy(){ return state.fmt==="image/jpeg" || state.fmt==="image/webp"; }
+
+  // ---- Minimal EXIF parser (JPEG APP1 only, ~180 lines) ----
+  function parseExif(buf){
+    var view = new DataView(buf);
+    var result = { gps:null, date:null, camera:null, software:null };
+    if(view.getUint16(0) !== 0xFFD8) return result; // not JPEG
+
+    var offset = 2;
+    while(offset < view.byteLength - 4){
+      var marker = view.getUint16(offset);
+      if(marker === 0xFFDA) break; // start of scan = end of metadata
+      var segLen = view.getUint16(offset + 2);
+      if(marker === 0xFFE1){ // APP1
+        // Check for "Exif\0\0"
+        if(view.getUint32(offset + 4) === 0x45786966 && view.getUint16(offset + 8) === 0x0000){
+          parseApp1(view, offset + 10, result);
+        }
+        break; // only parse first APP1
+      }
+      offset += 2 + segLen;
+    }
+    return result;
+  }
+
+  function parseApp1(view, tiffStart, result){
+    var le = view.getUint16(tiffStart) === 0x4949; // "II" = little-endian
+    function u16(o){ return view.getUint16(tiffStart + o, le); }
+    function u32(o){ return view.getUint32(tiffStart + o, le); }
+    function str(o, len){
+      var s = "";
+      for(var i=0;i<len;i++){
+        var c = view.getUint8(tiffStart + o + i);
+        if(c === 0) break;
+        s += String.fromCharCode(c);
+      }
+      return s.trim();
+    }
+    function rational(o){ var n=u32(o), d=u32(o+4); return d ? n/d : 0; }
+
+    if(u16(2) !== 0x002A) return; // TIFF magic
+    var ifd0 = u32(4);
+    var exifOff = 0, gpsOff = 0;
+
+    // Read IFD0
+    var count = u16(ifd0);
+    for(var i=0;i<count;i++){
+      var entry = ifd0 + 2 + i*12;
+      var tag = u16(entry), type = u16(entry+2), cnt = u32(entry+4);
+      var valOff = (cnt * [0,1,1,2,4,8,1,1,2,4,8,4,8][type] || 0) > 4 ? u32(entry+8) : entry+8;
+      if(tag === 0x010F) result.camera = str(valOff, cnt); // Make
+      if(tag === 0x0110){ // Model
+        var model = str(valOff, cnt);
+        result.camera = result.camera ? result.camera + " " + model : model;
+      }
+      if(tag === 0x0131) result.software = str(valOff, cnt); // Software
+      if(tag === 0x8769) exifOff = u32(entry+8); // ExifIFD
+      if(tag === 0x8825) gpsOff = u32(entry+8); // GPSIFD
+    }
+
+    // Read ExifIFD for DateTimeOriginal
+    if(exifOff){
+      var ec = u16(exifOff);
+      for(var i=0;i<ec;i++){
+        var entry = exifOff + 2 + i*12;
+        var tag = u16(entry), type = u16(entry+2), cnt = u32(entry+4);
+        var valOff = (cnt * [0,1,1,2,4,8,1,1,2,4,8,4,8][type] || 0) > 4 ? u32(entry+8) : entry+8;
+        if(tag === 0x9003 || tag === 0x9004){ // DateTimeOriginal or DateTimeDigitized
+          result.date = str(valOff, cnt);
+          if(tag === 0x9003) break; // prefer Original
+        }
+      }
+    }
+
+    // Read GPS IFD
+    if(gpsOff){
+      var gc = u16(gpsOff);
+      var latRef="", lonRef="", lat=null, lon=null;
+      for(var i=0;i<gc;i++){
+        var entry = gpsOff + 2 + i*12;
+        var tag = u16(entry), type = u16(entry+2), cnt = u32(entry+4);
+        var valOff = u32(entry+8);
+        if(tag === 1) latRef = str(entry+8, 2); // GPSLatitudeRef
+        if(tag === 3) lonRef = str(entry+8, 2); // GPSLongitudeRef
+        if(tag === 2 && type === 5 && cnt === 3){ // GPSLatitude (3 rationals)
+          lat = rational(valOff) + rational(valOff+8)/60 + rational(valOff+16)/3600;
+        }
+        if(tag === 4 && type === 5 && cnt === 3){ // GPSLongitude
+          lon = rational(valOff) + rational(valOff+8)/60 + rational(valOff+16)/3600;
+        }
+      }
+      if(lat !== null && lon !== null){
+        if(latRef === "S") lat = -lat;
+        if(lonRef === "W") lon = -lon;
+        result.gps = { lat: lat, lon: lon, latRef: latRef, lonRef: lonRef };
+      }
+    }
+  }
+
+  // ---- Format GPS for display ----
+  function fmtGps(coord, ref){
+    var abs = Math.abs(coord);
+    var d = Math.floor(abs);
+    var m = Math.floor((abs - d) * 60);
+    var s = ((abs - d - m/60) * 3600).toFixed(1);
+    return d + "° " + m + "' " + s + '" ' + ref;
+  }
+
+  // ---- Load file ----
+  function loadFile(file){
+    if(!file || !/^image\//.test(file.type)) return;
+    state.baseName = (file.name || T.baseName).replace(/\.[^.]+$/, "") || T.baseName;
+    var isJpeg = /^image\/jpe?g$/i.test(file.type);
+
+    // Read raw bytes for EXIF parsing
+    var reader = new FileReader();
+    reader.onload = function(){
+      var exif = isJpeg ? parseExif(reader.result) : null;
+      showResults(file, exif, isJpeg);
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function showResults(file, exif, isJpeg){
+    // Load bitmap for preview + clean save
+    var loadDone = function(bmp, w, h){
+      state.bitmap = bmp; state.origW = w; state.origH = h;
+      $("m-name").textContent = file.name || "-";
+      $("m-size").textContent = fmtBytes(file.size);
+      $("m-dims").textContent = w + " × " + h;
+      results.style.display = "block";
+      drop.style.display = "none";
+      results.scrollIntoView({behavior:"smooth", block:"start"});
+    };
+
+    if(window.createImageBitmap){
+      var opts = {};
+      try{ opts = {imageOrientation:"from-image"}; }catch(e){}
+      createImageBitmap(file, opts).then(function(bmp){
+        loadDone(bmp, bmp.width, bmp.height);
+      }).catch(function(){ loadViaImg(file, loadDone); });
+    } else {
+      loadViaImg(file, loadDone);
+    }
+
+    // Show preview
+    var previewUrl = URL.createObjectURL(file);
+    preview.onload = function(){ URL.revokeObjectURL(previewUrl); };
+    preview.src = previewUrl;
+
+    // Display metadata findings
+    findings.innerHTML = "";
+    gpsWarn.style.display = "none";
+
+    if(!isJpeg){
+      findings.innerHTML = '<div class="not-jpeg-msg">ℹ️ ' + T.notJpeg + '</div>';
+      return;
+    }
+
+    var found = false;
+    if(exif.gps){
+      found = true;
+      addFinding("📍", T.lblGps, fmtGps(exif.gps.lat, exif.gps.latRef) + ",  " + fmtGps(exif.gps.lon, exif.gps.lonRef));
+      gpsWarn.style.display = "flex";
+      gpsCoords.textContent = exif.gps.lat.toFixed(6) + ", " + exif.gps.lon.toFixed(6);
+    }
+    if(exif.date){
+      found = true;
+      addFinding("📅", T.lblDate, exif.date.replace(/^(\d{4}):(\d{2}):(\d{2})/, "$1-$2-$3"));
+    }
+    if(exif.camera){
+      found = true;
+      addFinding("📸", T.lblCamera, exif.camera);
+    }
+    if(exif.software){
+      found = true;
+      addFinding("💻", T.lblSoftware, exif.software);
+    }
+
+    if(!found){
+      findings.innerHTML = '<div class="clean-msg"><div class="big">✅</div><b>' + T.cleanTitle + '</b><br>' + T.cleanBody + '</div>';
+    }
+  }
+
+  function addFinding(icon, label, value){
+    var d = document.createElement("div"); d.className = "finding";
+    d.innerHTML = '<div class="icon">' + icon + '</div><div><div class="label">' + label + '</div><div class="value">' + escHtml(value) + '</div></div>';
+    findings.appendChild(d);
+  }
+  function escHtml(s){ var d=document.createElement("div"); d.textContent=s; return d.innerHTML; }
+
+  function loadViaImg(file, done){
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function(){ done(img, img.naturalWidth, img.naturalHeight); URL.revokeObjectURL(url); };
+    img.onerror = function(){ URL.revokeObjectURL(url); alert(T.alertRead); };
+    img.src = url;
+  }
+
+  // ---- Clean save (canvas re-encode strips all metadata) ----
+  function renderClean(){
+    if(!state.bitmap) return;
+    canvas.width = state.origW; canvas.height = state.origH;
+    ctx.clearRect(0, 0, state.origW, state.origH);
+    if(state.fmt === "image/jpeg"){
+      ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, state.origW, state.origH);
+    }
+    ctx.drawImage(state.bitmap, 0, 0, state.origW, state.origH);
+
+    var quality = isLossy() ? Number(q.value) : undefined;
+    canvas.toBlob(function(blob){
+      if(!blob) return;
+      if(state.blobUrl) URL.revokeObjectURL(state.blobUrl);
+      state.blob = blob;
+      state.blobUrl = URL.createObjectURL(blob);
+    }, state.fmt, quality);
+  }
+
+  // ---- Format selector ----
+  fmtBox.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    [].forEach.call(fmtBox.children, function(c){ c.classList.remove("active"); });
+    b.classList.add("active");
+    state.fmt = b.dataset.fmt;
+    var lossy = isLossy();
+    qRow.classList.toggle("disabled", !lossy);
+    qhint.textContent = lossy ? "" : T.lossless;
+    renderClean();
+  });
+
+  q.addEventListener("input", function(){
+    qval.textContent = Math.round(Number(q.value)*100) + "%";
+    renderClean();
+  });
+
+  // ---- Download ----
+  downloadBtn.addEventListener("click", function(){
+    renderClean();
+    // Small delay to ensure blob is ready
+    setTimeout(function(){
+      if(!state.blob) return;
+      var name = state.baseName + "_clean." + extFor(state.fmt);
+      var a = document.createElement("a");
+      a.href = state.blobUrl; a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+    }, 80);
+  });
+
+  resetBtn.addEventListener("click", function(){
+    results.style.display = "none"; drop.style.display = "block";
+    fileInput.value = ""; state.bitmap = null;
+    if(state.blobUrl){ URL.revokeObjectURL(state.blobUrl); state.blobUrl=null; }
+  });
+
+  // ---- Input: click, file, drag&drop, paste ----
+  drop.addEventListener("click", function(){ fileInput.click(); });
+  drop.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fileInput.click(); } });
+  fileInput.addEventListener("change", function(){ if(fileInput.files[0]) loadFile(fileInput.files[0]); });
+
+  ["dragenter","dragover"].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add("drag"); });
+  });
+  ["dragleave","dragend","drop"].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove("drag"); });
+  });
+  drop.addEventListener("drop", function(e){
+    var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if(f) loadFile(f);
+  });
+  document.addEventListener("paste", function(e){
+    var items = e.clipboardData && e.clipboardData.items; if(!items) return;
+    for(var i=0;i<items.length;i++){
+      if(items[i].type && items[i].type.indexOf("image/")===0){
+        var f = items[i].getAsFile(); if(f){ loadFile(f); e.preventDefault(); break; }
+      }
+    }
+  });
+
+  applyLang(lang);
+})();
+</script>
+</body>
+</html>
