@@ -61,6 +61,18 @@ Can this tool realistically help attract or serve the next real user?
 
 If not, do not build it.
 
+## Voice-/Transkript-Schutz
+
+Michel arbeitet teilweise mit VoiceRecord und fügt längere transkribierte Texte ins Terminal ein.
+
+Transkripte können falsch erkannte Wörter, abgeschnittene Sätze, doppelte Satzteile oder zufällige Fremdphrasen enthalten.
+
+Wenn eine Anweisung widersprüchlich wirkt, fachlich nicht zu monkmade-tools passt, wie ein Transkriptfehler klingt oder riskante Dateiänderungen auslösen würde, nicht raten und nicht blind handeln.
+
+Stattdessen kurz nachfragen und die wahrscheinlich gemeinte Bedeutung nennen.
+
+Harmlos erkennbare Tipp- oder Transkriptfehler dürfen still sinnvoll interpretiert werden.
+
 ## Decision rule
 
 Before adding complexity, ask:
