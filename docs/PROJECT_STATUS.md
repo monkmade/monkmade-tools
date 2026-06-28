@@ -1,0 +1,124 @@
+# PROJECT_STATUS.md
+
+## Projekt
+
+Name: `monkmade-tools`
+
+---
+
+## Stand
+
+Datum: `2026-06-28`  
+Status: `Aktiv`
+
+Kurzfassung:
+
+```text
+monkmade-tools ist ein Maker-Hub mit winzigen, einzweckigen Browser-Tools, die
+zu 100 % client-seitig laufen — kein Upload, kein Account, kein Backend, kein
+Tracking. Gehostet statisch auf GitHub Pages. Aktuell live: zwei Tools
+(Image Resizer & Converter, Photo Privacy Check). Seiten sind standardmäßig
+Englisch, deutsche Browser bekommen automatisch Deutsch (EN/DE-Umschalter).
+Ziel ist Distribution/Audience, nicht ein SaaS-Produkt: die ersten 100 echten
+Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
+```
+
+---
+
+## Letzte Änderungen
+
+- Tool #2 „Photo Privacy Check" ergänzt (EXIF-Anzeige + Canvas-Metadaten-Strip).
+- Tool #1 + Hub auf Englisch als Standard umgestellt (Deutsch automatisch erkannt, EN/DE-Toggle).
+- Maker-Hub + Tool #1 (client-seitiger Bild-Resizer/Konverter) initial veröffentlicht.
+
+---
+
+## Aktueller technischer Zustand
+
+Build: `nicht vorhanden (rein statisch, kein Build-Schritt)`  
+Tests: `nicht vorhanden`  
+Git: `Änderungen offen`  
+Dev-Server: `nicht relevant (lokal index.html im Browser öffnen)`
+
+Bekannte Fehler:
+
+- Keine bekannt.
+
+Offene Git-Punkte (Stand 2026-06-28):
+
+- `docs/` und die umbenannte `CLAUDE.md` sind noch nicht committet.
+
+---
+
+## Wichtige Dateien
+
+- `README.md` - Projektübersicht (Außensicht, für Besucher)
+- `CLAUDE.md` - Arbeitsregeln & Leitplanken für Claude Code / KI-Sessions
+- `docs/PROJECT_STATUS.md` - aktueller Stand & Übergabe (diese Datei)
+- `docs/Dokumente/` - projektbezogene Materialien / Archiv
+- `docs/Dokumente/DECISIONS.md` - Entscheidungs- & Architekturhistorie (Archiv, nicht aktiv geladen)
+- `index.html` - Maker-Hub, listet alle Tools (EN/DE)
+- `image-resizer/index.html` - Tool #1: Bild-Resizer & Konverter
+- `photo-privacy/index.html` - Tool #2: Foto-Privatsphäre-Check
+- `INBOUND-ASKS-LOG.md` - eingehende „Kannst du …?"-Wünsche (nur inbound)
+- `LICENSE` - MIT
+
+---
+
+## Offene Punkte
+
+- Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
+- Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
+
+---
+
+## Nächster sicherer Schritt
+
+```text
+Git aufräumen: CLAUDE.md (umbenannt), docs/ inkl. PROJECT_STATUS.md und das nach
+docs/Dokumente/ verschobene DECISIONS.md in einem sauberen Commit festhalten.
+```
+
+---
+
+## No-Gos / Vorsicht
+
+- Kein Backend, kein Account, kein Tracking, keine externen Requests — Tools müssen 100 % client-seitig bleiben.
+- Nicht zu einem SaaS-Produkt ausbauen, solange keine klare externe Nachfrage besteht.
+- Keine Dependencies / kein Build-Pipeline einführen — jedes Tool bleibt eine eigenständige `index.html`.
+- Nicht überengineeren: lieber veröffentlichen als polieren.
+
+---
+
+## Übergabe an nächste Session
+
+Wenn eine neue ChatGPT-, Cursor- oder Claude-Code-Session startet, zuerst lesen:
+
+1. `README.md`
+2. `CLAUDE.md`
+3. `docs/PROJECT_STATUS.md`
+
+Kurzkontext für nächste Session:
+
+```text
+Maker-Hub mit 2 live Tools, rein statisch auf GitHub Pages. Ziel = erste 100
+echte Nutzer (Distribution, kein SaaS). Git ist noch nicht sauber: CLAUDE.md +
+docs/ (inkl. archiviertem docs/Dokumente/DECISIONS.md) sind noch nicht committet.
+Vor neuen Features zuerst Git aufräumen.
+```
+
+---
+
+## Letzter Checkpoint
+
+Datum/Uhrzeit: `2026-06-28 17:31`  
+Durchgeführt von: `Claude Code`
+
+Zusammenfassung:
+
+```text
+Projektstruktur geprüft. CLAUDE_UPDATED_FINAL.md → CLAUDE.md umbenannt (Inhalt
+unverändert). docs/PROJECT_STATUS.md aus Vorlage erstellt und an monkmade-tools
+angepasst. DECISIONS.md wiederhergestellt und als Archiv nach docs/Dokumente/
+verschoben. Offen: alles in einem sauberen Commit festhalten.
+```
