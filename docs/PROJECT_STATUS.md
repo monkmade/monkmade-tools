@@ -27,6 +27,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
+- Projektstruktur aufgeräumt: `CLAUDE.md` (umbenannt), `docs/PROJECT_STATUS.md` (neu aus Vorlage), `DECISIONS.md` ins Archiv `docs/Dokumente/` verschoben, Template entfernt — committet (`7d59c6d`) und gepusht.
 - Tool #2 „Photo Privacy Check" ergänzt (EXIF-Anzeige + Canvas-Metadaten-Strip).
 - Tool #1 + Hub auf Englisch als Standard umgestellt (Deutsch automatisch erkannt, EN/DE-Toggle).
 - Maker-Hub + Tool #1 (client-seitiger Bild-Resizer/Konverter) initial veröffentlicht.
@@ -37,16 +38,12 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 Build: `nicht vorhanden (rein statisch, kein Build-Schritt)`  
 Tests: `nicht vorhanden`  
-Git: `Änderungen offen`  
+Git: `sauber (main = origin/main, alles committet und gepusht)`  
 Dev-Server: `nicht relevant (lokal index.html im Browser öffnen)`
 
 Bekannte Fehler:
 
 - Keine bekannt.
-
-Offene Git-Punkte (Stand 2026-06-28):
-
-- `docs/` und die umbenannte `CLAUDE.md` sind noch nicht committet.
 
 ---
 
@@ -75,8 +72,9 @@ Offene Git-Punkte (Stand 2026-06-28):
 ## Nächster sicherer Schritt
 
 ```text
-Git aufräumen: CLAUDE.md (umbenannt), docs/ inkl. PROJECT_STATUS.md und das nach
-docs/Dokumente/ verschobene DECISIONS.md in einem sauberen Commit festhalten.
+Tool #3 anhand der Inbound-Asks entscheiden ODER Reichweite für die zwei live
+Tools aufbauen (Build in Public) — Richtung erste 100 echte Nutzer. Kein
+Git-Aufräumen nötig: Repo ist sauber und gepusht.
 ```
 
 ---
@@ -102,23 +100,24 @@ Kurzkontext für nächste Session:
 
 ```text
 Maker-Hub mit 2 live Tools, rein statisch auf GitHub Pages. Ziel = erste 100
-echte Nutzer (Distribution, kein SaaS). Git ist noch nicht sauber: CLAUDE.md +
-docs/ (inkl. archiviertem docs/Dokumente/DECISIONS.md) sind noch nicht committet.
-Vor neuen Features zuerst Git aufräumen.
+echte Nutzer (Distribution, kein SaaS). Repo ist sauber und gepusht (Doku-Struktur
+steht: README + CLAUDE.md + docs/PROJECT_STATUS.md, Archiv in docs/Dokumente/).
+Nächster Fokus: Tool #3 aus Inbound-Asks ableiten oder Reichweite aufbauen.
 ```
 
 ---
 
 ## Letzter Checkpoint
 
-Datum/Uhrzeit: `2026-06-28 17:31`  
+Datum/Uhrzeit: `2026-06-28 17:55`  
 Durchgeführt von: `Claude Code`
 
 Zusammenfassung:
 
 ```text
-Projektstruktur geprüft. CLAUDE_UPDATED_FINAL.md → CLAUDE.md umbenannt (Inhalt
-unverändert). docs/PROJECT_STATUS.md aus Vorlage erstellt und an monkmade-tools
-angepasst. DECISIONS.md wiederhergestellt und als Archiv nach docs/Dokumente/
-verschoben. Offen: alles in einem sauberen Commit festhalten.
+Doku-Struktur fertiggestellt: CLAUDE_UPDATED_FINAL.md → CLAUDE.md umbenannt,
+docs/PROJECT_STATUS.md aus Vorlage erstellt/angepasst, DECISIONS.md als Archiv
+nach docs/Dokumente/ verschoben, Template entfernt. Sauber committet (7d59c6d)
+und zu GitHub gepusht. Arbeitsverzeichnis sauber, main = origin/main. Session
+sauber beendet — keine offenen Git-Punkte.
 ```
