@@ -27,7 +27,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
-- CLAUDE-Dateien konsolidiert: Es lagen zwei Versionen in `.claude/` (`CLAUDE.md` + `CLAUDE_monkmade_tools.md`). Die neue Version (mit zusätzlichem Abschnitt „Voice-/Transkript-Schutz") in die kanonische `.claude/CLAUDE.md` übernommen, die Duplikat-Datei gelöscht. **Noch nicht committet.**
+- CLAUDE-Dateien konsolidiert: Es lagen zwei Versionen in `.claude/` (`CLAUDE.md` + `CLAUDE_monkmade_tools.md`). Die neue Version (mit zusätzlichem Abschnitt „Voice-/Transkript-Schutz") in die kanonische `.claude/CLAUDE.md` übernommen, die Duplikat-Datei gelöscht — committet (`bdaa058`, Rename inkl. Slash-Command-Dateien) und gepusht.
 - Projektstruktur aufgeräumt: `CLAUDE.md` (umbenannt), `docs/PROJECT_STATUS.md` (neu aus Vorlage), `DECISIONS.md` ins Archiv `docs/Dokumente/` verschoben, Template entfernt — committet (`7d59c6d`) und gepusht.
 - Tool #2 „Photo Privacy Check" ergänzt (EXIF-Anzeige + Canvas-Metadaten-Strip).
 - Tool #1 + Hub auf Englisch als Standard umgestellt (Deutsch automatisch erkannt, EN/DE-Toggle).
@@ -39,7 +39,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 Build: `nicht vorhanden (rein statisch, kein Build-Schritt)`  
 Tests: `nicht vorhanden`  
-Git: `NICHT sauber — Root-CLAUDE.md gelöscht (unstaged), .claude/ untracked; CLAUDE-Konsolidierung noch nicht committet`  
+Git: `sauber (main = origin/main, alles committet und gepusht)`  
 Dev-Server: `nicht relevant (lokal index.html im Browser öffnen)`
 
 Bekannte Fehler:
@@ -73,10 +73,9 @@ Bekannte Fehler:
 ## Nächster sicherer Schritt
 
 ```text
-Offene Git-Änderungen committen & pushen: Root-CLAUDE.md-Löschung + neue
-.claude/CLAUDE.md (CLAUDE-Konsolidierung). Danach Tool #3 anhand der
-Inbound-Asks entscheiden ODER Reichweite für die zwei live Tools aufbauen
-(Build in Public) — Richtung erste 100 echte Nutzer.
+Tool #3 anhand der Inbound-Asks entscheiden ODER Reichweite für die zwei live
+Tools aufbauen (Build in Public) — Richtung erste 100 echte Nutzer. Kein
+Git-Aufräumen nötig: Repo ist sauber und gepusht.
 ```
 
 ---
@@ -111,7 +110,7 @@ Nächster Fokus: Tool #3 aus Inbound-Asks ableiten oder Reichweite aufbauen.
 
 ## Letzter Checkpoint
 
-Datum/Uhrzeit: `2026-06-28 21:25`  
+Datum/Uhrzeit: `2026-06-28 21:30`  
 Durchgeführt von: `Claude Code`
 
 Zusammenfassung:
@@ -119,8 +118,7 @@ Zusammenfassung:
 ```text
 Zwei CLAUDE-Dateien in .claude/ verglichen und konsolidiert: neue Version
 (mit Abschnitt „Voice-/Transkript-Schutz") in die kanonische .claude/CLAUDE.md
-übernommen, Duplikat CLAUDE_monkmade_tools.md gelöscht. Es bleibt genau eine
-CLAUDE.md am richtigen Ort. PROJECT_STATUS aktualisiert. NICHT committet
-(per Session-End-Regel): offen sind die Root-CLAUDE.md-Löschung + die neue
-.claude/CLAUDE.md — nächster sicherer Schritt ist Committen & Pushen.
+übernommen, Duplikat CLAUDE_monkmade_tools.md gelöscht. Sauber committet
+(bdaa058, Rename inkl. Slash-Command-Dateien) und gepusht. Arbeitsverzeichnis
+sauber, main = origin/main. Session sauber beendet — keine offenen Git-Punkte.
 ```
