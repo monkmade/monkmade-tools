@@ -27,6 +27,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
+- Reichweite aktiv gestartet (X): **Photo Privacy Check gepostet** (2026-07-01, @monkmadetools, EN) — live, og:image-Vorschaukarte zieht korrekt. Absetzweg: X-„intent"-Link (vorausgefüllter Compose, manueller Post-Klick — kein Bot/keine Automatisierung, X-konform). Image Resizer war bereits am 2026-06-10 gepostet (nicht erneut). Neue Datei `docs/SOCIAL-POSTS.md` sichert alle Post-Texte (EN/DE) + fertige intent-Links, damit nichts mehr als Chat-Artefakt verloren geht.
 - OG-Feinschliff — committet (`b9938e5`) und gepusht: `og:site_name` = „monkmade tools" auf allen 3 Seiten; Seitentitel bei Image Resizer & Photo Privacy auf < 60 Zeichen gekürzt (statisches `<title>` und `I18N`-Titel EN/DE synchron). Auf opengraph.xyz gegengeprüft: **alle 3 Karten 0 Fehler**, die Warnungen „Site name missing" und „Page title too long" sind weg (verbleibend nur der ignorierbare opengraph.xyz-CTA-Hinweis).
 - Reichweite/Shareability (Schritt 2) ergänzt — committet (`e82e8fb`) und gepusht:
   - **Social-Preview-Bilder**: 3 gebrandete PNGs (1200×630, monkmade-Dark-Stil, via Headless-Chrome gerendert) in `og/`; verdrahtet als `og:image` + Twitter `summary_large_image` + `og:url` + `canonical` auf allen 3 Seiten. Geteilte Links zeigen jetzt ein echtes Vorschaubild.
@@ -64,6 +65,7 @@ Bekannte Fehler:
 - `image-resizer/index.html` - Tool #1: Bild-Resizer & Konverter
 - `photo-privacy/index.html` - Tool #2: Foto-Privatsphäre-Check
 - `og/` - Social-Preview-Bilder (1200×630 PNG) für die Share-Vorschau
+- `docs/SOCIAL-POSTS.md` - fertige X-Post-Texte (EN/DE) + vorausgefüllte intent-Links + Sicherheits-Regeln
 - `sitemap.xml` / `robots.txt` - SEO-Discovery (Root)
 - `INBOUND-ASKS-LOG.md` - eingehende „Kannst du …?"-Wünsche (nur inbound)
 - `LICENSE` - MIT
@@ -74,7 +76,9 @@ Bekannte Fehler:
 
 - Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
 - Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
-- **Build-in-Public-Posts absetzen** (Reichweite): In dieser Session wurden fertige X-Post-Vorlagen (EN/DE) für alle 3 Seiten erstellt — als Chat-Artefakt, NICHT im Repo. Reihenfolge: Photo Privacy zuerst (stärkste Story), zeitversetzt Image Resizer, Hub als Pinned-Tweet. Michel setzt die Posts selbst ab.
+- **X-Posts (Reichweite):** Photo Privacy ✅ gepostet (2026-07-01). Image Resizer war schon Jun 10 (nicht erneut). **Offen: Hub als Pinned-Tweet** setzen (zeitversetzt, neuer Text) — Vorlage + Link liegen in `docs/SOCIAL-POSTS.md`.
+- **X-Profilbild fehlt** (Avatar leer) — monkmade-Logo/Avatar erstellen und hochladen.
+- **Weitere Kanäle** (gestaffelt): Reddit (r/SideProject, r/privacy), Hacker News „Show HN", Indie Hackers, freie Verzeichnisse (Uneed/DevHunt/AlternativeTo) — Entwürfe kommen in `docs/SOCIAL-POSTS.md`.
 - Share-Vorschauen sind live geprüft (opengraph.xyz, 0 Fehler) — kein weiterer Check nötig.
 
 ---
@@ -82,10 +86,11 @@ Bekannte Fehler:
 ## Nächster sicherer Schritt
 
 ```text
-Reichweite aktiv nutzen: die vorbereiteten X-Posts absetzen (Photo Privacy zuerst,
-dann zeitversetzt die anderen) und auf frühe Interaktion reagieren. Parallel:
-Tool #3 aus Inbound-Asks ableiten, sobald ≥3 gleiche Asks eingehen. Kein
-Git-/Technik-Schritt offen — Repo ist sauber und gepusht.
+Reichweite fortsetzen: auf frühe Interaktion beim Photo-Privacy-Post reagieren.
+Zeitversetzt (anderer Tag) den Hub als Pinned-Tweet setzen. X-Profilbild ergänzen.
+Danach weitere Kanäle gestaffelt (Reddit/Show HN/Indie Hackers/Verzeichnisse).
+Parallel: Tool #3 aus Inbound-Asks ableiten, sobald ≥3 gleiche Asks eingehen.
+Alle Post-Vorlagen liegen in docs/SOCIAL-POSTS.md.
 ```
 
 ---
