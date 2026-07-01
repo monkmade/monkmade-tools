@@ -1,5 +1,22 @@
 # CLAUDE.md
 
+## System-Zuordnung (FounderOS ist das einzige System)
+
+- FounderOS ist ab jetzt das EINZIGE übergeordnete System. Das frühere
+  CEO / IDEA LAB / BUILD ENGINE / DISTRIBUTION ENGINE / §-Verfassungs-System ist
+  aufgelöst und veraltet; Verweise darauf sind tot.
+- Rolle von monkmade-tools: ausführender Distributions-/Sammel-Arm von FounderOS.
+- Einzige Wahrheit ist der FounderOS-Vault (00_CORE). monkmade-tools schreibt NICHT
+  in 00_CORE; 00_CORE bleibt read-only.
+- Die lokalen Dateien hier (INBOUND-ASKS-LOG.md, docs/Dokumente/DECISIONS.md,
+  docs/Dokumente/00_INBOX, 01_BRIEFINGS, 02_RESEARCH …) sind LOKALE Roh-/Arbeits-
+  sammlung, KEINE Wahrheit. Sie stehen neben 00_CORE, nicht darüber. Ihre
+  Nummerierung hat NICHTS mit dem FounderOS-Vault (00_CORE/01_SIGNALS) zu tun.
+- Fluss der Erkenntnisse: monkmade-tools sammelt lokal → Michel hebt verdichtete
+  Erkenntnisse bewusst per FounderOS-Brain-Session in den Vault (Rohsignale nach
+  01_SIGNALS, verdichtet nach AUDIENCE_INSIGHTS). Einbahnstraße, manuell, keine
+  automatische Pipeline, kein Direktzugriff von monkmade-tools auf den Vault.
+
 ## What is monkmade-tools?
 
 monkmade-tools is a collection of small, useful software tools published under the Monkmade name.
