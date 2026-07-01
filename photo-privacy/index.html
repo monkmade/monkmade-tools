@@ -7,9 +7,18 @@
 <meta name="description" content="Check your photos for hidden GPS location, camera info and timestamps. Strip all metadata before sharing. 100% in your browser — nothing gets uploaded.">
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+<link rel="canonical" href="https://monkmade.github.io/monkmade-tools/photo-privacy/">
 <meta property="og:title" content="Photo Privacy Check — see &amp; strip hidden metadata">
 <meta property="og:description" content="Check photos for hidden GPS, camera info, timestamps. Strip everything before sharing. 100% in your browser.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://monkmade.github.io/monkmade-tools/photo-privacy/">
+<meta property="og:image" content="https://monkmade.github.io/monkmade-tools/og/photo-privacy.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Photo Privacy Check — see &amp; strip hidden metadata">
+<meta name="twitter:description" content="Check photos for hidden GPS, camera info, timestamps. Strip everything before sharing. 100% in your browser.">
+<meta name="twitter:image" content="https://monkmade.github.io/monkmade-tools/og/photo-privacy.png">
 <style>
   :root{
     --bg:#0e1116; --panel:#171b22; --panel2:#1f242d; --line:#2a313b;
@@ -209,6 +218,10 @@
       <span data-i18n="askBody">Tell me in one sentence — I might build the next tiny tool for it.</span>
       <a id="ask-link" href="#" target="_blank" rel="noopener" data-i18n="askLink">→ Tell me here (GitHub, 1 click)</a>
     </div>
+    <div class="share" style="margin-top:14px; display:flex; align-items:center; gap:12px; flex-wrap:wrap">
+      <button class="btn ghost" id="share" type="button" data-i18n="shareBtn">🔗 Share this tool</button>
+      <span id="share-ok" hidden style="color:var(--accent2); font-size:.85rem" data-i18n="shareCopied">Link copied!</span>
+    </div>
     <div class="small" data-i18n="footerSmall">
       Build in public · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Source code &amp; more tools on GitHub</a> ·
       free &amp; no sign-up.
@@ -246,6 +259,8 @@
       askTitle: "What's the next annoying manual task in your workflow?",
       askBody: "Tell me in one sentence — I might build the next tiny tool for it.",
       askLink: "→ Tell me here (GitHub, 1 click)",
+      shareBtn: "🔗 Share this tool",
+      shareCopied: "Link copied!",
       footerSmall: 'Build in public · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Source code &amp; more tools on GitHub</a> · free &amp; no sign-up.',
       toggle: "Deutsch",
       lossless: "(lossless — no slider needed)",
@@ -283,6 +298,8 @@
       askTitle: "Was ist der nächste nervige Handgriff in deinem Workflow?",
       askBody: "Sag's mir in einem Satz — ich bau vielleicht das nächste winzige Tool dafür.",
       askLink: "→ Schreib's hier rein (GitHub, 1 Klick)",
+      shareBtn: "🔗 Tool teilen",
+      shareCopied: "Link kopiert!",
       footerSmall: 'Build in Public · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Quellcode &amp; weitere Tools auf GitHub</a> · kostenlos &amp; ohne Anmeldung.',
       toggle: "English",
       lossless: "(verlustfrei — kein Regler nötig)",
@@ -345,6 +362,25 @@
     var next = (lang === "de") ? "en" : "de";
     try{ localStorage.setItem("mmt-lang", next); }catch(err){}
     applyLang(next);
+  });
+
+  // Share: native share sheet on mobile, copy-link fallback on desktop.
+  $("share").addEventListener("click", function(){
+    var url = location.origin + location.pathname;
+    if(navigator.share){
+      navigator.share({ title: T.title, url: url }).catch(function(){});
+      return;
+    }
+    var done = function(){
+      var ok = $("share-ok");
+      ok.hidden = false;
+      setTimeout(function(){ ok.hidden = true; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(done, function(){ window.prompt("Copy this link:", url); });
+    }else{
+      window.prompt("Copy this link:", url);
+    }
   });
 
   // ---- Helpers ----

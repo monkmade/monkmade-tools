@@ -7,9 +7,18 @@
 <meta name="description" content="Small, free tools that run entirely in your browser. No upload, no account, no tracking. Built in public.">
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<link rel="canonical" href="https://monkmade.github.io/monkmade-tools/">
 <meta property="og:title" content="monkmade tools — tiny browser tools, no upload">
 <meta property="og:description" content="Small free tools, entirely in your browser. No upload, no account, no tracking.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://monkmade.github.io/monkmade-tools/">
+<meta property="og:image" content="https://monkmade.github.io/monkmade-tools/og/hub.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="monkmade tools — tiny browser tools, no upload">
+<meta name="twitter:description" content="Small free tools, entirely in your browser. No upload, no account, no tracking.">
+<meta name="twitter:image" content="https://monkmade.github.io/monkmade-tools/og/hub.png">
 <style>
   :root{
     --bg:#0e1116; --panel:#171b22; --panel2:#1f242d; --line:#2a313b;
@@ -58,6 +67,13 @@
   .ask a.cta{display:inline-block; background:var(--accent); color:#0b1020; text-decoration:none;
     font-weight:600; padding:10px 16px; border-radius:10px}
 
+  .share{margin-top:22px; display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+  #share{font:inherit; font-size:.92rem; color:var(--text); background:var(--panel);
+    border:1px solid var(--line); border-radius:10px; padding:9px 15px; cursor:pointer;
+    transition:border-color .15s}
+  #share:hover{border-color:var(--accent)}
+  #share-ok{color:var(--accent2); font-size:.9rem}
+
   footer{margin-top:46px; border-top:1px solid var(--line); padding-top:20px;
     color:var(--muted); font-size:.9rem}
 </style>
@@ -104,6 +120,11 @@
     <a class="cta" id="ask-link" href="#" target="_blank" rel="noopener" data-i18n="askCta">→ Tell me (GitHub, 1 click)</a>
   </div>
 
+  <div class="share">
+    <button id="share" type="button" data-i18n="shareBtn">🔗 Share monkmade tools</button>
+    <span id="share-ok" hidden data-i18n="shareCopied">Link copied!</span>
+  </div>
+
   <footer data-i18n="footer">
     Build in public by <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> ·
     <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">source code on GitHub</a> ·
@@ -131,6 +152,8 @@
       askTitle: "What's the next annoying manual task in your workflow?",
       askBody: "Describe it in one sentence — if a tiny browser tool can solve it, I might build it next.",
       askCta: "→ Tell me (GitHub, 1 click)",
+      shareBtn: "🔗 Share monkmade tools",
+      shareCopied: "Link copied!",
       footer: 'Build in public by <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">source code on GitHub</a> · all static, no server.',
       toggle: "Deutsch",
       issueTitle: "Next annoying task: ",
@@ -151,6 +174,8 @@
       askTitle: "Was ist der nächste nervige Handgriff in deinem Workflow?",
       askBody: "Beschreib ihn in einem Satz — wenn es als winziges Browser-Tool lösbar ist, baue ich es vielleicht als Nächstes.",
       askCta: "→ Sag's mir (GitHub, 1 Klick)",
+      shareBtn: "🔗 monkmade tools teilen",
+      shareCopied: "Link kopiert!",
       footer: 'Build in Public von <a href="https://github.com/monkmade" target="_blank" rel="noopener">monkmade</a> · <a href="https://github.com/monkmade/monkmade-tools" target="_blank" rel="noopener">Quellcode auf GitHub</a> · alles statisch, kein Server.',
       toggle: "English",
       issueTitle: "Nächster Handgriff: ",
@@ -194,6 +219,26 @@
     var next = (lang === "de") ? "en" : "de";
     try{ localStorage.setItem("mmt-lang", next); }catch(err){}
     applyLang(next);
+  });
+
+  // Share: native share sheet on mobile, copy-link fallback on desktop.
+  var shareBtn = document.getElementById("share");
+  shareBtn.addEventListener("click", function(){
+    var url = location.origin + location.pathname;
+    if(navigator.share){
+      navigator.share({ title: I18N[lang].title, url: url }).catch(function(){});
+      return;
+    }
+    var done = function(){
+      var ok = document.getElementById("share-ok");
+      ok.hidden = false;
+      setTimeout(function(){ ok.hidden = true; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(done, function(){ window.prompt("Copy this link:", url); });
+    }else{
+      window.prompt("Copy this link:", url);
+    }
   });
 
   applyLang(lang);
