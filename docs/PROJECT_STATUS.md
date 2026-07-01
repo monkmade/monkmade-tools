@@ -27,6 +27,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
+- **Marken-Mascot / Avatar erstellt**: süßer „digitaler Mönch" (chibi, Kapuze, Heiligenschein, Mint-Gesicht) via Recraft (V4 Vector, gratis). Liegt in `brand/` als `mascot.svg` (Vektor-Quelle, 1024²), `avatar.png` (400×400, Kopf-Zoom fürs X-Profilbild) und `avatar-full.png` (Ganzkörper, für Website/OG). Offen: Michel lädt `brand/avatar.png` bei X hoch.
 - Reichweite aktiv gestartet (X): **Photo Privacy Check gepostet** (2026-07-01, @monkmadetools, EN) — live, og:image-Vorschaukarte zieht korrekt. Absetzweg: X-„intent"-Link (vorausgefüllter Compose, manueller Post-Klick — kein Bot/keine Automatisierung, X-konform). Image Resizer war bereits am 2026-06-10 gepostet (nicht erneut). Neue Datei `docs/SOCIAL-POSTS.md` sichert alle Post-Texte (EN/DE) + fertige intent-Links, damit nichts mehr als Chat-Artefakt verloren geht.
 - OG-Feinschliff — committet (`b9938e5`) und gepusht: `og:site_name` = „monkmade tools" auf allen 3 Seiten; Seitentitel bei Image Resizer & Photo Privacy auf < 60 Zeichen gekürzt (statisches `<title>` und `I18N`-Titel EN/DE synchron). Auf opengraph.xyz gegengeprüft: **alle 3 Karten 0 Fehler**, die Warnungen „Site name missing" und „Page title too long" sind weg (verbleibend nur der ignorierbare opengraph.xyz-CTA-Hinweis).
 - Reichweite/Shareability (Schritt 2) ergänzt — committet (`e82e8fb`) und gepusht:
@@ -66,6 +67,7 @@ Bekannte Fehler:
 - `photo-privacy/index.html` - Tool #2: Foto-Privatsphäre-Check
 - `og/` - Social-Preview-Bilder (1200×630 PNG) für die Share-Vorschau
 - `docs/SOCIAL-POSTS.md` - fertige X-Post-Texte (EN/DE) + vorausgefüllte intent-Links + Sicherheits-Regeln
+- `brand/` - Marken-Mascot/Avatar: `mascot.svg` (Vektor-Quelle), `avatar.png` (400×400 Kopf-Zoom, X-Profilbild), `avatar-full.png` (Ganzkörper)
 - `sitemap.xml` / `robots.txt` - SEO-Discovery (Root)
 - `INBOUND-ASKS-LOG.md` - eingehende „Kannst du …?"-Wünsche (nur inbound)
 - `LICENSE` - MIT
@@ -77,7 +79,7 @@ Bekannte Fehler:
 - Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
 - Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
 - **X-Posts (Reichweite):** Photo Privacy ✅ gepostet (2026-07-01). Image Resizer war schon Jun 10 (nicht erneut). **Offen: Hub als Pinned-Tweet** setzen (zeitversetzt, neuer Text) — Vorlage + Link liegen in `docs/SOCIAL-POSTS.md`.
-- **X-Profilbild fehlt** (Avatar leer) — monkmade-Logo/Avatar erstellen und hochladen.
+- **X-Profilbild:** ✅ Mascot-Avatar erstellt (`brand/avatar.png`). Offen: Michel lädt ihn bei X hoch (optional auch als GitHub-Orga-Avatar). Später optional: Mascot als Favicon/Hub-Logo statt Hammer-Emoji.
 - **Weitere Kanäle** (gestaffelt): Reddit (r/SideProject, r/privacy), Hacker News „Show HN", Indie Hackers, freie Verzeichnisse (Uneed/DevHunt/AlternativeTo) — Entwürfe kommen in `docs/SOCIAL-POSTS.md`.
 - Share-Vorschauen sind live geprüft (opengraph.xyz, 0 Fehler) — kein weiterer Check nötig.
 
