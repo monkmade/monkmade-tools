@@ -8,7 +8,7 @@ Name: `monkmade-tools`
 
 ## Stand
 
-Datum: `2026-06-28`  
+Datum: `2026-07-01`  
 Status: `Aktiv`
 
 Kurzfassung:
@@ -27,6 +27,10 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
+- Reichweite/Shareability (Schritt 2) ergänzt — committet (`e82e8fb`) und gepusht:
+  - **Social-Preview-Bilder**: 3 gebrandete PNGs (1200×630, monkmade-Dark-Stil, via Headless-Chrome gerendert) in `og/`; verdrahtet als `og:image` + Twitter `summary_large_image` + `og:url` + `canonical` auf allen 3 Seiten. Geteilte Links zeigen jetzt ein echtes Vorschaubild.
+  - **Share-Button** auf allen 3 Seiten: 1-Klick (`navigator.share` auf Mobile, Copy-Link-Fallback am Desktop, „Copied!"-Feedback), EN/DE übersetzt, kein Tracking/keine Dependency.
+  - **SEO-Hygiene**: `sitemap.xml` (3 URLs) + `robots.txt`.
 - CLAUDE-Dateien konsolidiert: Es lagen zwei Versionen in `.claude/` (`CLAUDE.md` + `CLAUDE_monkmade_tools.md`). Die neue Version (mit zusätzlichem Abschnitt „Voice-/Transkript-Schutz") in die kanonische `.claude/CLAUDE.md` übernommen, die Duplikat-Datei gelöscht — committet (`bdaa058`, Rename inkl. Slash-Command-Dateien) und gepusht.
 - Projektstruktur aufgeräumt: `CLAUDE.md` (umbenannt), `docs/PROJECT_STATUS.md` (neu aus Vorlage), `DECISIONS.md` ins Archiv `docs/Dokumente/` verschoben, Template entfernt — committet (`7d59c6d`) und gepusht.
 - Tool #2 „Photo Privacy Check" ergänzt (EXIF-Anzeige + Canvas-Metadaten-Strip).
@@ -58,6 +62,8 @@ Bekannte Fehler:
 - `index.html` - Maker-Hub, listet alle Tools (EN/DE)
 - `image-resizer/index.html` - Tool #1: Bild-Resizer & Konverter
 - `photo-privacy/index.html` - Tool #2: Foto-Privatsphäre-Check
+- `og/` - Social-Preview-Bilder (1200×630 PNG) für die Share-Vorschau
+- `sitemap.xml` / `robots.txt` - SEO-Discovery (Root)
 - `INBOUND-ASKS-LOG.md` - eingehende „Kannst du …?"-Wünsche (nur inbound)
 - `LICENSE` - MIT
 
@@ -67,15 +73,17 @@ Bekannte Fehler:
 
 - Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
 - Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
+- Share-Vorschauen nach dem GitHub-Pages-Redeploy final gegenchecken (opengraph.xyz / Card-Validatoren gegen die 3 Live-URLs; ggf. „scrape again" für Cache-Refresh). Danach echte Build-in-Public-Posts absetzen — die geteilten Links haben jetzt ein Vorschaubild.
 
 ---
 
 ## Nächster sicherer Schritt
 
 ```text
-Tool #3 anhand der Inbound-Asks entscheiden ODER Reichweite für die zwei live
-Tools aufbauen (Build in Public) — Richtung erste 100 echte Nutzer. Kein
-Git-Aufräumen nötig: Repo ist sauber und gepusht.
+Reichweite jetzt aktiv nutzen: Share-Previews nach Pages-Redeploy prüfen und
+Build-in-Public-Posts mit den Live-Links absetzen (Karten zeigen jetzt ein
+Vorschaubild). Parallel: Tool #3 aus Inbound-Asks ableiten, sobald ≥3 gleiche
+Asks eingehen. Repo ist sauber und gepusht.
 ```
 
 ---
@@ -101,24 +109,25 @@ Kurzkontext für nächste Session:
 
 ```text
 Maker-Hub mit 2 live Tools, rein statisch auf GitHub Pages. Ziel = erste 100
-echte Nutzer (Distribution, kein SaaS). Repo ist sauber und gepusht (Doku-Struktur
-steht: README + CLAUDE.md + docs/PROJECT_STATUS.md, Archiv in docs/Dokumente/).
-Nächster Fokus: Tool #3 aus Inbound-Asks ableiten oder Reichweite aufbauen.
+echte Nutzer (Distribution, kein SaaS). Repo ist sauber und gepusht. Shareability
+steht jetzt: og:image-Preview-Karten (og/), Share-Button je Seite, sitemap/robots.
+Nächster Fokus: Preview-Check nach Pages-Redeploy + Build-in-Public-Posts, und
+Tool #3 aus Inbound-Asks ableiten.
 ```
 
 ---
 
 ## Letzter Checkpoint
 
-Datum/Uhrzeit: `2026-06-28 21:30`  
+Datum/Uhrzeit: `2026-07-01`  
 Durchgeführt von: `Claude Code`
 
 Zusammenfassung:
 
 ```text
-Zwei CLAUDE-Dateien in .claude/ verglichen und konsolidiert: neue Version
-(mit Abschnitt „Voice-/Transkript-Schutz") in die kanonische .claude/CLAUDE.md
-übernommen, Duplikat CLAUDE_monkmade_tools.md gelöscht. Sauber committet
-(bdaa058, Rename inkl. Slash-Command-Dateien) und gepusht. Arbeitsverzeichnis
-sauber, main = origin/main. Session sauber beendet — keine offenen Git-Punkte.
+Schritt 2 (Reichweite) umgesetzt: Social-Preview-Bilder (3× 1200×630 PNG in og/,
+via Headless-Chrome gerendert) + og:image/Twitter-Cards/canonical auf allen 3
+Seiten, 1-Klick-Share-Button (navigator.share + Copy-Fallback, EN/DE), sowie
+sitemap.xml + robots.txt. Committet (e82e8fb) und gepusht. main = origin/main.
+Offen: Preview nach Pages-Redeploy gegenchecken + Build-in-Public-Posts absetzen.
 ```
