@@ -114,8 +114,55 @@ https://twitter.com/intent/tweet?text=I'm%20building%20a%20small%20set%20of%20ti
   Text + ~23 Zeichen (t.co-Link) unter 280 bleibt.
 - Encoding in PowerShell: `[uri]::EscapeDataString($text)`.
 
+## Reddit
+
+**Account:** u/monkmadetools (neu → in freundlichen Subs starten, Karma aufbauen).
+Reddit: kein Intent-Link, manuell posten. Value-first, kein Verkaufston, keine
+Hashtags. Gestaffelt, nicht mehrere Subs am selben Tag.
+
+### R1) r/buildinpublic — Hub  ✅ gepostet 2026-07-02
+
+Submit: https://www.reddit.com/r/buildinpublic/submit?type=TEXT
+
+**Titel:**
+```
+Building tiny browser tools that run 100% client-side — no upload, no account, no tracking (2 live)
+```
+
+**Text:**
+```
+I got tired of "simple" online tools that make you upload your files to some
+server, sign up for an account, or sit through tracking + ads. So I started
+building the opposite: tiny, single-purpose tools that run entirely in your
+browser. Your files never leave your device.
+
+Two are live so far:
+
+• Image Resizer & Converter — resize/compress/convert to PNG/JPG/WebP
+• Photo Privacy Check — see the hidden GPS location, camera & timestamp (EXIF)
+  in your photos, and strip it all before sharing
+
+All free, no account, no backend, no tracking. Static site, open on GitHub.
+
+Hub: https://monkmade.github.io/monkmade-tools/
+
+It's a build-in-public experiment — goal is to reach the first 100 real users
+and learn what people actually find useful. I'd love feedback, and honestly:
+what's a small, annoying manual task in your workflow that a tiny browser tool
+could solve? That's how I pick the next one.
+```
+
+### Nächste Reddit-Subs (gestaffelt, je 1–2 Tage Abstand)
+
+- **r/indiehackers** — gleicher Hub-Text, Titel ggf. leicht anders.
+- **r/SomethingIMade** — „ich hab das gebaut"-Ton.
+- **r/InternetIsBeautiful** — nur 1 Tool (Photo Privacy), strenges Format.
+- **r/webdev** — nur „Showoff Saturday"-Thread.
+- Später/vorsichtig: **r/privacy**, **r/degoogle** — Photo-Privacy-Story, aber
+  strenge Self-Promo-Regeln → erst Karma / Mods fragen.
+
 ## Weitere Kanäle (Fahrplan)
 
 Siehe `docs/PROJECT_STATUS.md` → Offene Punkte. Gestaffelt, nicht alles am selben Tag:
-Reddit (r/SideProject, r/privacy), Hacker News „Show HN", Indie Hackers,
-freie Verzeichnisse (Uneed, DevHunt, AlternativeTo). Texte kommen hier dazu.
+Hacker News „Show HN", Indie Hackers, freie Verzeichnisse (Uneed, DevHunt,
+AlternativeTo). Texte kommen hier dazu.
