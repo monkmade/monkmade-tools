@@ -27,6 +27,8 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
+- **FounderOS als einziges System verankert** — committet (`7913744`) und gepusht: neuer Abschnitt „System-Zuordnung" ganz oben in `.claude/CLAUDE.md`. Kernaussage: FounderOS ist ab jetzt das einzige übergeordnete System; das alte CEO/IDEA LAB/BUILD ENGINE/§-Verfassungs-System ist aufgelöst. Rolle von monkmade-tools = ausführender Distributions-/Sammel-Arm. `00_CORE` = einzige Wahrheit, read-only; kein Direktzugriff/keine Auto-Pipeline; verdichtete Erkenntnisse hebt Michel manuell per FounderOS-Brain-Session in den Vault. (Read-only-Audits zuvor durchgeführt; die lokalen Alt-System-Reste in `DECISIONS.md`/`INBOUND-ASKS-LOG.md` sind noch nicht bereinigt — bewusst offen, Michel + FounderOS-Reviewer entscheiden.)
+- **X-Header (Banner) erstellt**: 1500×500 im Marken-Stil (dunkel, Blau→Grün, Wortmarke + Claim + „no upload · no account · no tracking" + freigestellter Mascot). Liegt als `brand/header.png` (noch untracked). Wartet auf Michels „passt" + Upload bei X.
 - **Marken-Mascot / Avatar erstellt**: süßer „digitaler Mönch" (chibi, Kapuze, Heiligenschein, Mint-Gesicht) via Recraft (V4 Vector, gratis). Liegt in `brand/` als `mascot.svg` (Vektor-Quelle, 1024²), `avatar.png` (400×400, Kopf-Zoom fürs X-Profilbild) und `avatar-full.png` (Ganzkörper, für Website/OG). Offen: Michel lädt `brand/avatar.png` bei X hoch.
 - Reichweite aktiv gestartet (X): **Photo Privacy Check gepostet** (2026-07-01, @monkmadetools, EN) — live, og:image-Vorschaukarte zieht korrekt. Absetzweg: X-„intent"-Link (vorausgefüllter Compose, manueller Post-Klick — kein Bot/keine Automatisierung, X-konform). Image Resizer war bereits am 2026-06-10 gepostet (nicht erneut). Neue Datei `docs/SOCIAL-POSTS.md` sichert alle Post-Texte (EN/DE) + fertige intent-Links, damit nichts mehr als Chat-Artefakt verloren geht.
 - OG-Feinschliff — committet (`b9938e5`) und gepusht: `og:site_name` = „monkmade tools" auf allen 3 Seiten; Seitentitel bei Image Resizer & Photo Privacy auf < 60 Zeichen gekürzt (statisches `<title>` und `I18N`-Titel EN/DE synchron). Auf opengraph.xyz gegengeprüft: **alle 3 Karten 0 Fehler**, die Warnungen „Site name missing" und „Page title too long" sind weg (verbleibend nur der ignorierbare opengraph.xyz-CTA-Hinweis).
@@ -46,7 +48,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 Build: `nicht vorhanden (rein statisch, kein Build-Schritt)`  
 Tests: `nicht vorhanden`  
-Git: `sauber (main = origin/main, alles committet und gepusht)`  
+Git: `main = origin/main (alle Commits gepusht). Untracked: brand/header.png, brand/mascot-transparent.svg — bewusst noch nicht committet (warten auf Header-„passt")`  
 Dev-Server: `nicht relevant (lokal index.html im Browser öffnen)`
 
 Bekannte Fehler:
@@ -79,8 +81,9 @@ Bekannte Fehler:
 - Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
 - Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
 - **X-Posts (Reichweite):** Photo Privacy ✅ gepostet (2026-07-01). Image Resizer war schon Jun 10 (nicht erneut). **Offen: Hub als Pinned-Tweet** setzen (zeitversetzt, neuer Text) — Vorlage + Link liegen in `docs/SOCIAL-POSTS.md`.
-- **X-Profilbild:** ✅ Mascot-Avatar erstellt (`brand/avatar.png`). Offen: Michel lädt ihn bei X hoch (optional auch als GitHub-Orga-Avatar). Später optional: Mascot als Favicon/Hub-Logo statt Hammer-Emoji.
-- **Weitere Kanäle** (gestaffelt): Reddit (r/SideProject, r/privacy), Hacker News „Show HN", Indie Hackers, freie Verzeichnisse (Uneed/DevHunt/AlternativeTo) — Entwürfe kommen in `docs/SOCIAL-POSTS.md`.
+- **X-Profilbild + Header:** ✅ Mascot-Avatar (`brand/avatar.png`) und Header (`brand/header.png`) erstellt. Offen: Header-„passt?" bestätigen, dann `brand/header.png` + `brand/mascot-transparent.svg` committen; Avatar + Header bei X hochladen (Avatar optional auch als GitHub-Orga-Avatar). Später optional: Mascot als Favicon/Hub-Logo statt Hammer-Emoji.
+- **Weitere Kanäle** (gestaffelt): Reddit (r/SideProject, r/privacy), Hacker News „Show HN", Indie Hackers, freie Verzeichnisse (Uneed/DevHunt/AlternativeTo) — Entwürfe kommen in `docs/SOCIAL-POSTS.md`. Reddit-Account: **u/monkmadetools** (nicht monkmade2).
+- **FounderOS-Migration (Alt-System-Bereinigung):** `.claude/CLAUDE.md` ist verankert (✅). Noch offen: Alt-System-Reste in `docs/Dokumente/DECISIONS.md` und `INBOUND-ASKS-LOG.md` bereinigen (§-Tags, CEO/BUILD ENGINE/IDEA LAB/Spoke, dangling Pfade). Bewusst nicht automatisch geändert — Michel + FounderOS-Reviewer entscheiden.
 - Share-Vorschauen sind live geprüft (opengraph.xyz, 0 Fehler) — kein weiterer Check nötig.
 
 ---
@@ -88,11 +91,12 @@ Bekannte Fehler:
 ## Nächster sicherer Schritt
 
 ```text
-Reichweite fortsetzen: auf frühe Interaktion beim Photo-Privacy-Post reagieren.
-Zeitversetzt (anderer Tag) den Hub als Pinned-Tweet setzen. X-Profilbild ergänzen.
-Danach weitere Kanäle gestaffelt (Reddit/Show HN/Indie Hackers/Verzeichnisse).
-Parallel: Tool #3 aus Inbound-Asks ableiten, sobald ≥3 gleiche Asks eingehen.
-Alle Post-Vorlagen liegen in docs/SOCIAL-POSTS.md.
+Header final bestätigen ("passt?"), dann brand/header.png + brand/mascot-
+transparent.svg committen. Avatar + Header bei X (@monkmadetools) hochladen.
+Danach: Hub als Pinned-Tweet (zeitversetzt) und weitere Kanäle gestaffelt
+(Reddit u/monkmadetools, Show HN, Indie Hackers, Verzeichnisse). Separat, wenn
+gewünscht: FounderOS-Alt-System-Reste in DECISIONS.md / INBOUND-ASKS-LOG.md
+bereinigen (Entscheidung Michel + Reviewer). Alle Post-Vorlagen in docs/SOCIAL-POSTS.md.
 ```
 
 ---
@@ -118,11 +122,14 @@ Kurzkontext für nächste Session:
 
 ```text
 Maker-Hub mit 2 live Tools, rein statisch auf GitHub Pages. Ziel = erste 100
-echte Nutzer (Distribution, kein SaaS). Repo ist sauber und gepusht. Shareability
-steht & ist live geprüft: og:image-Preview-Karten (og/) mit og:site_name, Share-
-Button je Seite, kurze Titel, sitemap/robots — opengraph.xyz meldet 0 Fehler.
-Nächster Fokus: die vorbereiteten X-Posts absetzen (Reichweite) und Tool #3 aus
-Inbound-Asks ableiten.
+echte Nutzer (Distribution, kein SaaS). WICHTIG: FounderOS ist ab jetzt das
+einzige übergeordnete System (siehe .claude/CLAUDE.md, Abschnitt „System-
+Zuordnung"); altes CEO/BUILD-ENGINE-System aufgelöst. Reichweite läuft: Photo
+Privacy auf X gepostet; Post-Vorlagen in docs/SOCIAL-POSTS.md. Marken-Mascot +
+Avatar + Header liegen in brand/ (avatar.png committet; header.png +
+mascot-transparent.svg noch untracked, warten auf „passt" + X-Upload). Accounts:
+X @monkmadetools, Reddit u/monkmadetools (NICHT monkmade2). Nächster Fokus:
+Header bestätigen + bei X hochladen, dann weitere Kanäle; Tool #3 aus Inbound-Asks.
 ```
 
 ---
@@ -135,13 +142,16 @@ Durchgeführt von: `Claude Code`
 Zusammenfassung:
 
 ```text
-Schritt 2 (Reichweite) umgesetzt + gepolisht: Social-Preview-Bilder (3× 1200×630
-PNG in og/, via Headless-Chrome gerendert), og:image/Twitter-Cards/canonical/
-og:site_name + gekürzte Titel auf allen 3 Seiten, 1-Klick-Share-Button
-(navigator.share + Copy-Fallback, EN/DE), sitemap.xml + robots.txt. Zwei Commits
-(e82e8fb, b9938e5) + Doku, alles gepusht, main = origin/main, Working Tree sauber.
-Live auf opengraph.xyz geprüft: 0 Fehler. Zusätzlich EXIF-Frage besprochen (wie
-Photo Privacy den Standort aus den Bild-Metadaten liest — nicht aus Dateiname/IP)
-und fertige X-Post-Vorlagen (EN/DE) erstellt (Chat-Artefakt, nicht im Repo).
-Offen: X-Posts absetzen (Reichweite). Kein Technik-Schritt offen.
+Reichweite + Marke + FounderOS-Verankerung. (1) Reichweite: Photo Privacy auf X
+(@monkmadetools) gepostet — intent-Link-Weg (manueller Post, kein Bot, X-konform);
+alle Post-Texte + Links in docs/SOCIAL-POSTS.md gesichert (Commit e899b75).
+Image Resizer war schon Jun 10 → nicht erneut. (2) Marke: „digitaler Mönch"-Mascot
+via Recraft (V4 Vector) erstellt; Avatar (Kopf-Zoom 400×400) + Ganzkörper + SVG
+in brand/ (Commit 28b1a12), X-Header (1500×500) als brand/header.png gerendert
+(noch untracked). (3) FounderOS: Read-only-Audits (Alt-System-Mapping) + Abschnitt
+„System-Zuordnung" in .claude/CLAUDE.md verankert und gepusht (Commit 7913744) —
+FounderOS = einziges System, 00_CORE read-only, monkmade = Distributions-/Sammel-Arm.
+Offen: Header „passt?" + Avatar/Header bei X hochladen; DECISIONS.md/INBOUND-ASKS-LOG.md
+Alt-System-Reste bereinigen (Entscheidung Michel + Reviewer). Untracked: brand/header.png,
+brand/mascot-transparent.svg. Sonst main = origin/main, alles gepusht.
 ```
