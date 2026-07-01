@@ -27,6 +27,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
+- OG-Feinschliff — committet (`b9938e5`) und gepusht: `og:site_name` = „monkmade tools" auf allen 3 Seiten; Seitentitel bei Image Resizer & Photo Privacy auf < 60 Zeichen gekürzt (statisches `<title>` und `I18N`-Titel EN/DE synchron). Auf opengraph.xyz gegengeprüft: **alle 3 Karten 0 Fehler**, die Warnungen „Site name missing" und „Page title too long" sind weg (verbleibend nur der ignorierbare opengraph.xyz-CTA-Hinweis).
 - Reichweite/Shareability (Schritt 2) ergänzt — committet (`e82e8fb`) und gepusht:
   - **Social-Preview-Bilder**: 3 gebrandete PNGs (1200×630, monkmade-Dark-Stil, via Headless-Chrome gerendert) in `og/`; verdrahtet als `og:image` + Twitter `summary_large_image` + `og:url` + `canonical` auf allen 3 Seiten. Geteilte Links zeigen jetzt ein echtes Vorschaubild.
   - **Share-Button** auf allen 3 Seiten: 1-Klick (`navigator.share` auf Mobile, Copy-Link-Fallback am Desktop, „Copied!"-Feedback), EN/DE übersetzt, kein Tracking/keine Dependency.
@@ -73,17 +74,18 @@ Bekannte Fehler:
 
 - Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
 - Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
-- Share-Vorschauen nach dem GitHub-Pages-Redeploy final gegenchecken (opengraph.xyz / Card-Validatoren gegen die 3 Live-URLs; ggf. „scrape again" für Cache-Refresh). Danach echte Build-in-Public-Posts absetzen — die geteilten Links haben jetzt ein Vorschaubild.
+- **Build-in-Public-Posts absetzen** (Reichweite): In dieser Session wurden fertige X-Post-Vorlagen (EN/DE) für alle 3 Seiten erstellt — als Chat-Artefakt, NICHT im Repo. Reihenfolge: Photo Privacy zuerst (stärkste Story), zeitversetzt Image Resizer, Hub als Pinned-Tweet. Michel setzt die Posts selbst ab.
+- Share-Vorschauen sind live geprüft (opengraph.xyz, 0 Fehler) — kein weiterer Check nötig.
 
 ---
 
 ## Nächster sicherer Schritt
 
 ```text
-Reichweite jetzt aktiv nutzen: Share-Previews nach Pages-Redeploy prüfen und
-Build-in-Public-Posts mit den Live-Links absetzen (Karten zeigen jetzt ein
-Vorschaubild). Parallel: Tool #3 aus Inbound-Asks ableiten, sobald ≥3 gleiche
-Asks eingehen. Repo ist sauber und gepusht.
+Reichweite aktiv nutzen: die vorbereiteten X-Posts absetzen (Photo Privacy zuerst,
+dann zeitversetzt die anderen) und auf frühe Interaktion reagieren. Parallel:
+Tool #3 aus Inbound-Asks ableiten, sobald ≥3 gleiche Asks eingehen. Kein
+Git-/Technik-Schritt offen — Repo ist sauber und gepusht.
 ```
 
 ---
@@ -110,9 +112,10 @@ Kurzkontext für nächste Session:
 ```text
 Maker-Hub mit 2 live Tools, rein statisch auf GitHub Pages. Ziel = erste 100
 echte Nutzer (Distribution, kein SaaS). Repo ist sauber und gepusht. Shareability
-steht jetzt: og:image-Preview-Karten (og/), Share-Button je Seite, sitemap/robots.
-Nächster Fokus: Preview-Check nach Pages-Redeploy + Build-in-Public-Posts, und
-Tool #3 aus Inbound-Asks ableiten.
+steht & ist live geprüft: og:image-Preview-Karten (og/) mit og:site_name, Share-
+Button je Seite, kurze Titel, sitemap/robots — opengraph.xyz meldet 0 Fehler.
+Nächster Fokus: die vorbereiteten X-Posts absetzen (Reichweite) und Tool #3 aus
+Inbound-Asks ableiten.
 ```
 
 ---
@@ -125,9 +128,13 @@ Durchgeführt von: `Claude Code`
 Zusammenfassung:
 
 ```text
-Schritt 2 (Reichweite) umgesetzt: Social-Preview-Bilder (3× 1200×630 PNG in og/,
-via Headless-Chrome gerendert) + og:image/Twitter-Cards/canonical auf allen 3
-Seiten, 1-Klick-Share-Button (navigator.share + Copy-Fallback, EN/DE), sowie
-sitemap.xml + robots.txt. Committet (e82e8fb) und gepusht. main = origin/main.
-Offen: Preview nach Pages-Redeploy gegenchecken + Build-in-Public-Posts absetzen.
+Schritt 2 (Reichweite) umgesetzt + gepolisht: Social-Preview-Bilder (3× 1200×630
+PNG in og/, via Headless-Chrome gerendert), og:image/Twitter-Cards/canonical/
+og:site_name + gekürzte Titel auf allen 3 Seiten, 1-Klick-Share-Button
+(navigator.share + Copy-Fallback, EN/DE), sitemap.xml + robots.txt. Zwei Commits
+(e82e8fb, b9938e5) + Doku, alles gepusht, main = origin/main, Working Tree sauber.
+Live auf opengraph.xyz geprüft: 0 Fehler. Zusätzlich EXIF-Frage besprochen (wie
+Photo Privacy den Standort aus den Bild-Metadaten liest — nicht aus Dateiname/IP)
+und fertige X-Post-Vorlagen (EN/DE) erstellt (Chat-Artefakt, nicht im Repo).
+Offen: X-Posts absetzen (Reichweite). Kein Technik-Schritt offen.
 ```
