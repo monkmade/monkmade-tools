@@ -80,8 +80,8 @@ Bekannte Fehler:
 
 - Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
 - Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
-- **X-Posts (Reichweite):** Photo Privacy ✅ gepostet (2026-07-01). Image Resizer war schon Jun 10 (nicht erneut). **Offen: Hub als Pinned-Tweet** setzen (zeitversetzt, neuer Text) — Vorlage + Link liegen in `docs/SOCIAL-POSTS.md`.
-- **X-Profilbild + Header:** ✅ Mascot-Avatar (`brand/avatar.png`) und Header (`brand/header.png`) erstellt. Offen: Header-„passt?" bestätigen, dann `brand/header.png` + `brand/mascot-transparent.svg` committen; Avatar + Header bei X hochladen (Avatar optional auch als GitHub-Orga-Avatar). Später optional: Mascot als Favicon/Hub-Logo statt Hammer-Emoji.
+- **X-Posts (Reichweite):** Photo Privacy ✅ gepostet (2026-07-01). Hub ✅ gepostet **und angepinnt** (2026-07-02). Image Resizer war schon Jun 10 (nicht erneut) — später mit frischem Winkel. Alle Vorlagen in `docs/SOCIAL-POSTS.md`.
+- **X-Profilbild + Header:** ✅ erledigt — Header (`brand/header.png`) + `mascot-transparent.svg` committet (`2f859e2`), Avatar (`brand/avatar.png`) + Header bei X hochgeladen, Bio/Location/Website gesetzt. Profil ist live und gebrandet. Später optional: Avatar als GitHub-Orga-Avatar; Mascot als Favicon/Hub-Logo statt Hammer-Emoji.
 - **Weitere Kanäle** (gestaffelt): Reddit (r/SideProject, r/privacy), Hacker News „Show HN", Indie Hackers, freie Verzeichnisse (Uneed/DevHunt/AlternativeTo) — Entwürfe kommen in `docs/SOCIAL-POSTS.md`. Reddit-Account: **u/monkmadetools** (nicht monkmade2).
 - **FounderOS-Migration (Alt-System-Bereinigung):** `.claude/CLAUDE.md` ist verankert (✅). Noch offen: Alt-System-Reste in `docs/Dokumente/DECISIONS.md` und `INBOUND-ASKS-LOG.md` bereinigen (§-Tags, CEO/BUILD ENGINE/IDEA LAB/Spoke, dangling Pfade). Bewusst nicht automatisch geändert — Michel + FounderOS-Reviewer entscheiden.
 - Share-Vorschauen sind live geprüft (opengraph.xyz, 0 Fehler) — kein weiterer Check nötig.

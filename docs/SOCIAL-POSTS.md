@@ -22,7 +22,7 @@ Damit gehen die Vorlagen nie wieder als Chat-Artefakt verloren.
   posten** (duplicative). Nur später mit frischem Winkel (z. B. „paste screenshot
   with Ctrl+V").
 - **Photo Privacy** (stärkste Story) — ✅ gepostet am 2026-07-01
-- **Hub** — offen: als **Pinned-Tweet** setzen. Neuer Text (2 Tools live), also
+- **Hub** — ✅ gepostet **und angepinnt** am 2026-07-02. Neuer Text (2 Tools live),
   kein Duplikat des Jun-10-Intros.
 
 ---
@@ -79,7 +79,7 @@ https://twitter.com/intent/tweet?text=Resize%2C%20compress%20%26%20convert%20ima
 
 ---
 
-## 3) Hub (monkmade tools)  — offen (Pinned-Tweet)
+## 3) Hub (monkmade tools)  ✅ gepostet + angepinnt 2026-07-02
 
 Link: https://monkmade.github.io/monkmade-tools/
 
