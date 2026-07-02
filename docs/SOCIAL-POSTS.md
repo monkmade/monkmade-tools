@@ -152,6 +152,40 @@ what's a small, annoying manual task in your workflow that a tiny browser tool
 could solve? That's how I pick the next one.
 ```
 
+### R2) r/SideProject — Hub  — offen, bereit zum Posten
+
+Submit: https://www.reddit.com/r/SideProject/submit?type=TEXT
+
+Anderer Winkel als R1 (problem-first statt Build-in-Public-Journey, kein Duplikat):
+
+**Titel:**
+```
+Made two tiny tools that run entirely in your browser — because I was tired of "simple" tools that need an upload or an account
+```
+
+**Text:**
+```
+Every time I needed to quickly resize an image or check what's hidden in a
+photo's metadata, I'd end up on some site that wanted me to upload the file,
+create an account, or sit through ads/tracking for something that should take
+5 seconds.
+
+So I built two small tools that do the whole thing in the browser — nothing
+ever gets uploaded:
+
+• Image Resizer & Converter — resize/compress/convert to PNG/JPG/WebP, paste
+  a screenshot straight in with Ctrl+V
+• Photo Privacy Check — shows the hidden GPS location, camera model & timestamp
+  in your photos, and lets you strip all of it before sharing
+
+Both free, no account, no backend, no tracking — static site, code's open.
+
+https://monkmade.github.io/monkmade-tools/
+
+Would love feedback, and if there's a small annoying task like this in your
+own workflow, tell me — that's basically how I pick what to build next.
+```
+
 ### Nächste Reddit-Subs (gestaffelt, je 1–2 Tage Abstand)
 
 - **r/indiehackers** — gleicher Hub-Text, Titel ggf. leicht anders.

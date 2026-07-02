@@ -27,6 +27,9 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 ## Letzte Änderungen
 
+- **Reichweite Richtung Endnutzer vorbereitet (2026-07-02):** Auf 2 echte Feedback-Posts in r/buildinpublic wurden hilfreiche, nicht-werbliche Kommentar-Entwürfe geschrieben (Michel postet manuell, zeitversetzt). Neues Subreddit **r/SideProject** als nächster Kanal identifiziert (niedrigere Karma-Hürde als r/buildinpublic, mehr Richtung echte Nutzer als reine Builder-Subs) — vollständiger Post-Entwurf (anderer Winkel: problem-first statt Build-in-Public-Journey, kein Duplikat) in `docs/SOCIAL-POSTS.md` unter „R2) r/SideProject" ergänzt, **noch nicht committet, noch nicht gepostet**.
+- **Reddit-Zugriff geprüft & Sackgasse dokumentiert (2026-07-02):** Live-Fetch auf Reddit (WebFetch/curl) ist von hier aus blockiert (403, Reddit-eigener Anti-Scraper-Schutz gegen Cloud-IPs, kein Problem unsererseits). Reddit-API als Alternative geprüft — seit 2025 „Responsible Builder Policy": Vorab-Genehmigung nötig für ALLE Apps (auch private), 2–4 Wochen Wartezeit, kein Self-Service mehr. Für gelegentliches Nachschauen lohnt sich das nicht (Overkill fürs Projekt-Prinzip „klein & pragmatisch"). **Workflow ab jetzt:** Michel schickt Screenshots von Posts/Kommentaren, Claude formuliert Antworten. Als Memory festgehalten, damit das Thema nicht erneut aufgerollt wird.
+- **FounderOS-Migration abgeschlossen (2026-07-02):** Alt-System-Reste (§-Tags, CEO/BUILD ENGINE/IDEA LAB/Spoke/Wedge, dangling Pfade) aus `docs/Dokumente/DECISIONS.md` und `INBOUND-ASKS-LOG.md` entfernt — inhaltlicher Kern (Architektur, Technik, Scope, Signal-Regel, Daten) unverändert erhalten, nur in FounderOS-Sprache. Committet + gepusht (`2b521fb`). Der zuvor offene Migrations-Punkt ist damit erledigt.
 - **X-Profil komplett gebrandet + live (2026-07-02):** Header (`brand/header.png`) + `mascot-transparent.svg` committet (`2f859e2`, gepusht) und bei X hochgeladen; Avatar (`brand/avatar.png`) als Profilbild; Bio, Location („In your browser"), Website gesetzt. **Hub als Pinned-Tweet** gepostet und angepinnt. Doku-Update committet+gepusht (`f4e9f81`).
 - **Reichweite Reddit gestartet (2026-07-02):** Erster Reddit-Post überhaupt — Hub in **r/buildinpublic** (u/monkmadetools), sauber gerendert, Hub-Link klickbar. Draft + Sub-Fahrplan in `docs/SOCIAL-POSTS.md` (R1 = gepostet).
 - **Erkenntnis Kanal-Mix (offen, siehe unten):** Builder-Subs (r/buildinpublic, r/indiehackers) sind Maker-Echokammern — gut für Feedback/Karma/Proof, **schwach für echte Endnutzer**. Unsere realen Nutzer sitzen woanders (Foto-/Privacy-/Alltags-Subs). Kein Vault-/Strategie-Eingriff — nur bessere taktische Kanalwahl ab jetzt.
@@ -51,7 +54,7 @@ Nutzer. Das Projekt ist Teil eines 28-Tage-Build-in-Public-Tests.
 
 Build: `nicht vorhanden (rein statisch, kein Build-Schritt)`  
 Tests: `nicht vorhanden`  
-Git: `main lokal 2 Doku-Edits VOR origin (SOCIAL-POSTS.md + PROJECT_STATUS.md, noch nicht committet). Alle vorherigen Commits gepusht (zuletzt f4e9f81). Keine Untracked-Dateien mehr — brand/header.png + mascot-transparent.svg sind committet (2f859e2).`  
+Git: `main lokal 1 Doku-Edit VOR origin (docs/SOCIAL-POSTS.md — R2-Post-Entwurf r/SideProject, noch nicht committet). Alle vorherigen Commits gepusht (zuletzt 2b521fb). Keine Untracked-Dateien.`  
 Dev-Server: `nicht relevant (lokal index.html im Browser öffnen)`
 
 Bekannte Fehler:
@@ -81,14 +84,17 @@ Bekannte Fehler:
 
 ## Offene Punkte
 
-- **Kanal-Mix schärfen:** Nächste Subs bewusst Richtung echte Endnutzer wählen, nicht weitere Builder-Echokammern. Photo Privacy = stärkste Endnutzer-Story. (Rein taktisch, kein Vault-/Strategie-Eingriff.)
+- **r/SideProject-Post bereit:** Vollständiger Entwurf (Titel + Text) in `docs/SOCIAL-POSTS.md` unter „R2" — noch zu posten (manuell durch Michel) und der Doku-Edit noch zu committen.
+- **2 Kommentare in r/buildinpublic bereit:** Entwürfe für Posts von GabeFernandez („Fork"-App) und lingya22 (X/Twitter-Downloader) formuliert — noch abzusetzen, **zeitversetzt** (nicht direkt hintereinander).
+- **Kanal-Mix schärfen:** Nächste Subs bewusst Richtung echte Endnutzer wählen, nicht weitere Builder-Echokammern. Photo Privacy = stärkste Endnutzer-Story. r/SideProject als Zwischenschritt (weniger Echokammer als r/buildinpublic, noch nicht so streng wie r/InternetIsBeautiful). (Rein taktisch, kein Vault-/Strategie-Eingriff.)
 - Nächstes Tool (#3) ist noch nicht festgelegt — wartet auf Signal aus dem Inbound-Asks-Log.
 - Erste echte Nutzer gewinnen / Reichweite aufbauen (Build in Public).
+- **X-Reichweite schwach:** Hub 2 Views, Photo Privacy 7 Views (Stand 2026-07-02) — bei neuem Account normal (Kaltstart), Reddit performt deutlich besser (r/buildinpublic-Hub-Post: 80+ Views). Taktischer Schluss: Energie Richtung Reddit priorisieren, X geduldig weiterlaufen lassen.
 - **X-Posts (Reichweite):** Photo Privacy ✅ gepostet (2026-07-01). Hub ✅ gepostet **und angepinnt** (2026-07-02). Image Resizer war schon Jun 10 (nicht erneut) — später mit frischem Winkel. Alle Vorlagen in `docs/SOCIAL-POSTS.md`.
 - **X-Profilbild + Header:** ✅ erledigt — Header (`brand/header.png`) + `mascot-transparent.svg` committet (`2f859e2`), Avatar (`brand/avatar.png`) + Header bei X hochgeladen, Bio/Location/Website gesetzt. Profil ist live und gebrandet. Später optional: Avatar als GitHub-Orga-Avatar; Mascot als Favicon/Hub-Logo statt Hammer-Emoji.
-- **Reddit gestartet:** r/buildinpublic (Hub) ✅ gepostet 2026-07-02 (u/monkmadetools). Gestaffelt weiter: r/indiehackers, r/SomethingIMade, r/InternetIsBeautiful (Photo Privacy), r/webdev (Showoff Saturday), später r/privacy/r/degoogle (erst Karma). Drafts in `docs/SOCIAL-POSTS.md`. **Nicht** „Repost to more communities" nutzen.
+- **Reddit gestartet:** r/buildinpublic (Hub) ✅ gepostet 2026-07-02 (u/monkmadetools), bislang keine Kommentare/Reaktionen. Nächster Kanal: r/SideProject (Entwurf bereit, s.o.). Danach gestaffelt: r/indiehackers, r/SomethingIMade, r/InternetIsBeautiful (Photo Privacy), r/webdev (Showoff Saturday), später r/privacy/r/degoogle (erst Karma). Drafts in `docs/SOCIAL-POSTS.md`. **Nicht** „Repost to more communities" nutzen.
+- **Reddit-Live-Zugriff nicht möglich:** Claude kann Reddit nicht per WebFetch/API live lesen (403-Sperre + seit 2025 genehmigungspflichtige API, s. Letzte Änderungen). Workflow: Michel schickt Screenshots von Posts/Kommentaren, Claude formuliert Antworten dazu.
 - **Weitere Kanäle** (gestaffelt): Hacker News „Show HN", Indie Hackers, freie Verzeichnisse (Uneed/DevHunt/AlternativeTo) — Entwürfe in `docs/SOCIAL-POSTS.md`.
-- **FounderOS-Migration (Alt-System-Bereinigung):** `.claude/CLAUDE.md` ist verankert (✅). Noch offen: Alt-System-Reste in `docs/Dokumente/DECISIONS.md` und `INBOUND-ASKS-LOG.md` bereinigen (§-Tags, CEO/BUILD ENGINE/IDEA LAB/Spoke, dangling Pfade). Bewusst nicht automatisch geändert — Michel + FounderOS-Reviewer entscheiden.
 - Share-Vorschauen sind live geprüft (opengraph.xyz, 0 Fehler) — kein weiterer Check nötig.
 
 ---
@@ -96,12 +102,13 @@ Bekannte Fehler:
 ## Nächster sicherer Schritt
 
 ```text
-Die 2 offenen Doku-Edits (SOCIAL-POSTS.md + PROJECT_STATUS.md) committen + pushen.
-Danach Reddit gestaffelt weiter — aber bewusst Richtung ECHTE Endnutzer statt nur
-Builder-Subs: Photo-Privacy-Story für einen Endnutzer-Sub vorbereiten (r/privacy /
-r/degoogle / r/InternetIsBeautiful), erst wenn u/monkmadetools etwas Karma hat;
-bis dahin in r/buildinpublic auf Kommentare freundlich antworten. Post-Vorlagen +
-Sub-Fahrplan in docs/SOCIAL-POSTS.md.
+Den offenen Doku-Edit (docs/SOCIAL-POSTS.md — R2-Entwurf r/SideProject) committen
++ pushen. Danach: die 2 vorbereiteten Kommentare in r/buildinpublic zeitversetzt
+absetzen (Fork-App-Post, X/Twitter-Downloader-Post), anschließend den r/SideProject-
+Post veröffentlichen. Timing gestaffelt halten, nicht alles am selben Tag. Danach
+weiter Richtung ECHTE Endnutzer: Photo-Privacy-Story für r/privacy / r/degoogle /
+r/InternetIsBeautiful vorbereiten, sobald u/monkmadetools etwas Karma hat.
+Post-Vorlagen + Sub-Fahrplan in docs/SOCIAL-POSTS.md.
 ```
 
 ---
@@ -127,14 +134,20 @@ Kurzkontext für nächste Session:
 
 ```text
 Maker-Hub mit 2 live Tools, rein statisch auf GitHub Pages. Ziel = erste 100
-echte Nutzer (Distribution, kein SaaS). WICHTIG: FounderOS ist das einzige
-übergeordnete System (siehe .claude/CLAUDE.md, „System-Zuordnung"); altes
-CEO/BUILD-ENGINE-System aufgelöst. X-Profil ist jetzt komplett gebrandet + live
-(Header/Avatar/Bio, Hub als Pinned-Tweet). Reddit gestartet: Hub in r/buildinpublic
-(erster Reddit-Post). Post-Vorlagen + Sub-Fahrplan in docs/SOCIAL-POSTS.md.
-Accounts: X @monkmadetools, Reddit u/monkmadetools (NICHT monkmade2). OFFEN:
-2 Doku-Edits noch nicht committet/gepusht. Nächster Fokus: Kanäle bewusst Richtung
-ECHTE Endnutzer (Photo-Privacy-Story), nicht nur Builder-Subs; Tool #3 aus Inbound-Asks.
+echte Nutzer (Distribution, kein SaaS). FounderOS ist das einzige übergeordnete
+System (siehe .claude/CLAUDE.md); Alt-System-Reste sind jetzt auch aus den
+lokalen Doku-Dateien entfernt (DECISIONS.md, INBOUND-ASKS-LOG.md), Migration
+damit komplett abgeschlossen. X-Profil komplett gebrandet + live. Reddit
+gestartet: Hub in r/buildinpublic (bislang keine Reaktionen — X-Views auch
+sehr niedrig, Reddit performt spürbar besser). Reddit-Live-Zugriff für Claude
+NICHT möglich (403-Sperre + seit 2025 genehmigungspflichtige API) — Workflow:
+Michel schickt Screenshots, Claude formuliert Antworten (siehe Memory
+„Reddit-Zugriff"). Vorbereitet, noch nicht gepostet: 2 Kommentar-Entwürfe für
+r/buildinpublic + kompletter r/SideProject-Post (Entwurf „R2" in
+docs/SOCIAL-POSTS.md, Doku-Edit noch nicht committet). Accounts: X
+@monkmadetools, Reddit u/monkmadetools (NICHT monkmade2). Nächster Fokus:
+Kanäle bewusst Richtung ECHTE Endnutzer (Photo-Privacy-Story), nicht nur
+Builder-Subs; Tool #3 aus Inbound-Asks.
 ```
 
 ---
@@ -147,15 +160,20 @@ Durchgeführt von: `Claude Code`
 Zusammenfassung:
 
 ```text
-Marke live + Reichweite ausgebaut. (1) X-Profil komplett: Header bestätigt,
-brand/header.png + mascot-transparent.svg committet (2f859e2, gepusht), Header +
-Avatar bei X hochgeladen, Bio/Location/Website gesetzt, Hub als Pinned-Tweet
-gepostet + angepinnt. Doku-Update committet+gepusht (f4e9f81). (2) Reddit gestartet:
-erster Post überhaupt — Hub in r/buildinpublic (u/monkmadetools), sauber gerendert.
-Draft + Sub-Fahrplan in docs/SOCIAL-POSTS.md (R1 = gepostet). (3) Erkenntnis:
-Builder-Subs = Feedback/Karma/Proof, aber schwach für echte Endnutzer — nächste
-Kanäle bewusst Richtung Photo-Privacy-Endnutzer wählen. Kein Vault-/Strategie-
-Eingriff (00_CORE/AUDIENCE bleibt read-only, wird nie von Projekt-Session berührt).
-OFFEN am Sessionende: 2 Doku-Edits (SOCIAL-POSTS.md + PROJECT_STATUS.md) noch nicht
-committet/gepusht — warten auf Michels Go. Sonst alles gepusht (zuletzt f4e9f81).
+FounderOS-Migration abgeschlossen + Reichweite Richtung Reddit vorbereitet.
+(1) Alt-System-Reste (§-Tags, CEO/BUILD ENGINE/IDEA LAB/Spoke/Wedge, dangling
+Pfade) aus DECISIONS.md + INBOUND-ASKS-LOG.md entfernt, inhaltlicher Kern
+erhalten — committet + gepusht (2b521fb), auf Michels Freigabe hin. (2)
+Reddit-Live-Zugriff geprüft: von hier aus blockiert (403) + seit 2025
+genehmigungspflichtige API (2-4 Wochen Wartezeit) — als Sackgasse dokumentiert
+und in Memory festgehalten, Workflow ist jetzt Screenshot-basiert. (3) Erste
+Reichweiten-Signale ausgewertet: X sehr schwach (2/7 Views), Reddit deutlich
+besser (80+ Views) — taktischer Schluss, Energie Richtung Reddit. (4) Auf 2
+echte Feedback-Posts in r/buildinpublic Kommentar-Entwürfe geschrieben (noch
+nicht gepostet). (5) r/SideProject als nächstes Subreddit identifiziert,
+kompletter Post-Entwurf in docs/SOCIAL-POSTS.md ergänzt (R2, problem-first-
+Winkel, kein Duplikat des Hub-Posts). Kein Vault-/Strategie-Eingriff.
+OFFEN am Sessionende: docs/SOCIAL-POSTS.md (R2-Entwurf) noch nicht committet/
+gepusht — wartet auf Michels Go. Die 2 Reddit-Kommentare + der r/SideProject-
+Post sind noch nicht abgesetzt (liegt bei Michel, manuell, zeitversetzt).
 ```
